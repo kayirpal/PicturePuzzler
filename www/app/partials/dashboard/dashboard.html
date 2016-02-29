@@ -1,0 +1,40 @@
+<div id="dashboardWrapper" class="viewWrapper">
+
+    <section class="iconsWrapper">
+
+        <div class="iconWrapper" ng-repeat="icon in dashboard.icons track by $index">
+            <article class="icon fa fa-3x" ng-class="icon.iconDetails.iconClass" ng-click="dashboard.solvePuzzle(icon)" ng-style="icon.iconDetails.iconStyle || app.iconStyle" ng-bind="icon.iconDetails.iconText">
+            </article>
+        </div>
+
+        <div class="iconWrapper addItemIcon">
+            <article class="icon fa fa-3x" ng-click="dashboard.startPuzzleCreation()" ng-style="app.iconStyle">+</article>
+        </div>
+
+    </section>
+
+    <div class="userActionWrapper" ng-class="{closed : !dashboard.currentStep}">
+        <section class="passwordPanelWrapper" ng-class="dashboard.currentStep.stepClass">
+
+            <header class="stepDescription">
+                <i class="headerIcon animated hvr-glow fa fa-4x" ng-class="dashboard.currentStep.headerClass"></i>
+                <h2 class="primaryHeader display-inline-block" ng-bind="dashboard.currentStep.primaryHeader"></h2>
+            </header>
+
+            <div class="passwordPanel">
+                <div class="currentStepWrapper" ui-view></div>
+            </div>
+
+            <div class="currentStepActions">
+                <div class="nextStepWrapper center">
+                    <div class="customStepActions" ng-repeat="action in dashboard.currentStep.customStepActions">
+                        <span ng-class="'fa pointer '+action.actionClass" ng-click="action.performAction(dashboard.currentStep)"></span>
+                    </div>
+                    <div class="homeButton pointer" ng-click="dashboard.hideUserActions()">
+                        <span class="fa  fa-home"></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

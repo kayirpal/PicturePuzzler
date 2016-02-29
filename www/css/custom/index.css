@@ -1,0 +1,572 @@
+﻿html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+body {
+    position: fixed;
+    color: #ccc;
+    background-color: #234;
+    top: 0;
+    left: 0;
+}
+
+#appHeader {
+    width: 100%;
+    position: relative;
+}
+
+.appWrapper {
+    width: 100%;
+    display: inline-block;
+    height: 100%;
+    position: relative;
+}
+
+.siteNavMenus {
+    margin: 2.5% 0;
+    padding: 0 0.3em;
+    -moz-transform: translateX(-14em);
+    -ms-transform: translateX(-14em);
+    -o-transform: translateX(-14em);
+    -webkit-transform: translateX(-14em);
+    transform: translateX(-14em);
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    -webkit-transition: all 1s ease;
+    transition: all 1s ease;
+    display: inline-block;
+}
+
+    .siteNavMenus:hover {
+        -moz-transform: translateX(0);
+        -ms-transform: translateX(0);
+        -o-transform: translateX(0);
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+
+    .siteNavMenus .menuSlider {
+        -moz-transform: scale(3);
+        -ms-transform: scale(3);
+        -o-transform: scale(3);
+        -webkit-transform: scale(3);
+        transform: scale(3);
+        -moz-transform-origin: 0 45%;
+        -ms-transform-origin: 0 45%;
+        -o-transform-origin: 0 45%;
+        -webkit-transform-origin: 0 45%;
+        transform-origin: 0 45%;
+    }
+
+.userInfoWrapper {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+    .userInfoWrapper .userNameDisplay {
+        font-size: 2em;
+        position: relative;
+        text-align: center;
+        line-height: 2em;
+        cursor: pointer;
+        z-index: 3;
+        padding: 0 0 0.5em 0.5em;
+        width: 2.5em;
+        height: 2.5em;
+        color: #fff;
+        -webkit-border-radius: 0 0 0 3em;
+        border-radius: 0 0 0 3em;
+        background-color: rgba(85, 85, 85, 0.72);
+    }
+
+    .userInfoWrapper .userActions {
+        position: absolute;
+        right: -8em;
+        top: -8em;
+        width: 10em;
+        height: 10em;
+        z-index: 2;
+        -moz-transition: all 0.5s ease;
+        -o-transition: all 0.5s ease;
+        -webkit-transition: all 0.5s ease;
+        transition: all 0.5s ease;
+        background-color: #aaa;
+        text-align: center;
+        -webkit-border-radius: 0 0 0 8em;
+        -moz-border-radius: 0 0 0 8em;
+        border-radius: 0 0 0 10em;
+    }
+
+    .userInfoWrapper .slideInRightDown {
+        right: 0;
+        top: 0;
+    }
+
+.userActions > span {
+    display: block;
+    font-size: 2.5em;
+    margin-right: 2em;
+    cursor: pointer;
+    color: #333;
+}
+
+    .userActions > span:nth-child(2) {
+        -moz-transform: translate(0.5em, 0.5em);
+        -ms-transform: translate(0.5em, 0.5em);
+        -o-transform: translate(0.5em, 0.5em);
+        -webkit-transform: translate(0.5em, 0.5em);
+        transform: translate(0.5em, 0.5em);
+    }
+
+    .userActions > span:nth-child(3) {
+        -moz-transform: translate(2em, 0.5em);
+        -ms-transform: translate(2em, 0.5em);
+        -o-transform: translate(2em, 0.5em);
+        -webkit-transform: translate(2em, 0.5em);
+        transform: translate(2em, 0.5em);
+    }
+
+.userNameDisplay img {
+    position: absolute;
+    right: 0em;
+    top: 0em;
+    width: 2em;
+    height: 2em;
+    border-radius: 5em;
+}
+
+.siteNavMenus a {
+    padding: 0.25em 1em;
+    margin: 0 0.35em;
+}
+
+    .siteNavMenus a span {
+        font-size: 1.25em;
+    }
+
+
+/*common classes*/
+.pos-top {
+    top: 0;
+}
+
+.pos-right {
+    right: 0;
+}
+
+.pos-bottom {
+    bottom: 0;
+}
+
+.pos-left {
+    left: 0;
+}
+
+.fLeft {
+    float: left;
+}
+
+.fRight {
+    float: right;
+}
+
+.fa-1pt5x {
+    font-size: 1.5em;
+}
+
+.connectOption {
+    position: relative;
+    cursor: pointer;
+    margin: 0 -1px;
+}
+
+    .connectOption span:first-child {
+        position: absolute;
+    }
+
+    .connectOption span:last-child {
+        position: absolute;
+        left: 2em;
+        color: #eee;
+        top: 1.85em;
+    }
+
+
+/* Common */
+.middle {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+}
+
+.v-middle {
+    position: absolute;
+    top: 50%;
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.h-middle {
+    position: absolute;
+    left: 50%;
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+
+
+.display-inline-block {
+    display: inline-block;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.font-14 {
+    font-size: 14px;
+}
+
+.font-19 {
+    font-size: 19px;
+}
+
+.font-24 {
+    font-size: 24px;
+}
+
+.font-31 {
+    font-size: 31px;
+}
+
+.font-39 {
+    font-size: 39px;
+}
+
+.discardChanges {
+    color: rgba(239, 60, 60, 0.75);
+}
+
+.margin-0 {
+    margin: 0;
+}
+
+/* custom Animations*/
+@-moz-keyframes glow {
+    0% {
+        text-shadow: 0 0 0 #fff;
+    }
+
+    50% {
+        text-shadow: 0 0 10px #fff;
+    }
+}
+
+@-webkit-keyframes glow {
+    0% {
+        text-shadow: 0 0 0 #fff;
+    }
+
+    50% {
+        text-shadow: 0 0 10px #fff;
+    }
+}
+
+@keyframes glow {
+    0% {
+        text-shadow: 0 0 0 #fff;
+    }
+
+    50% {
+        text-shadow: 0 0 10px #fff;
+    }
+}
+
+
+@keyframes errorField {
+    0% {
+        background-color: rgba(238, 51, 17, 0);
+    }
+
+    20% {
+        background-color: rgba(238, 51, 17, 0.5);
+    }
+
+    40% {
+        background-color: rgba(238, 51, 17, 0);
+    }
+
+    60% {
+        background-color: rgba(238, 51, 17, 0.5);
+    }
+
+    80% {
+        background-color: rgba(238, 51, 17, 0);
+    }
+}
+
+@keyframes nextStep {
+    0% {
+        -moz-transform: translate(0);
+        -ms-transform: translate(0);
+        -o-transform: translate(0);
+        -webkit-transform: translate(0);
+        transform: translate(0);
+    }
+
+    25% {
+        -moz-transform: translate(15px);
+        -ms-transform: translate(15px);
+        -o-transform: translate(15px);
+        -webkit-transform: translate(15px);
+        transform: translate(15px);
+    }
+
+    50% {
+        -moz-transform: translate(0);
+        -ms-transform: translate(0);
+        -o-transform: translate(0);
+        -webkit-transform: translate(0);
+        transform: translate(0);
+    }
+
+    75% {
+        -moz-transform: translate(5px);
+        -ms-transform: translate(5px);
+        -o-transform: translate(5px);
+        -webkit-transform: translate(5px);
+        transform: translate(5px);
+    }
+
+    100% {
+        -moz-transform: translate(0);
+        -ms-transform: translate(0);
+        -o-transform: translate(0);
+        -webkit-transform: translate(0);
+        transform: translate(0);
+    }
+}
+
+
+.btn {
+    border-radius: 6px;
+    padding: 0 15px;
+    line-height: 30px;
+}
+
+label {
+    font-weight: normal;
+    margin: 0;
+}
+
+
+.animated {
+    -moz-animation-duration: 0.5s;
+    -o-animation-duration: 0.5s;
+    -webkit-animation-duration: 0.5s;
+    animation-duration: 0.5s;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.display-block {
+    display: block;
+}
+
+.float-right {
+    float: right;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+
+.rotate-90 {
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+.rotate-m-90 {
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+}
+
+.fa-counter-spin {
+    -moz-animation: fa-counter-spin 2s infinite linear;
+    -o-animation: fa-counter-spin 2s infinite linear;
+    -webkit-animation: fa-counter-spin 2s infinite linear;
+    animation: fa-counter-spin 2s infinite linear;
+}
+
+
+@keyframes fa-counter-spin {
+    100% {
+        -webkit-transform: rotate(0);
+        -moz-transform: rotate(0);
+        -ms-transform: rotate(0);
+        -o-transform: rotate(0);
+        transform: rotate(0);
+    }
+
+    0% {
+        -webkit-transform: rotate(359deg);
+        -moz-transform: rotate(359deg);
+        -ms-transform: rotate(359deg);
+        -o-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+
+.transition-all-medium {
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+.popupWrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+}
+
+.visible {
+    visibility: visible !important;
+}
+
+.viewWrapper {
+    width: 100%;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    -webkit-transition: all 1s ease;
+    transition: all 1s ease;
+    height: 100%;
+    position: relative;
+    -moz-animation-duration: 0.35s;
+    -o-animation-duration: 0.35s;
+    -webkit-animation-duration: 0.35s;
+    animation-duration: 0.35s;
+}
+
+.resetSettingsButton {
+    color: #E65252;
+}
+
+.setSettingsButton {
+    color: #9FF9A0;
+}
+
+.shareIconWrapper {
+    display: inline-block;
+    margin: -10px;
+}
+
+.rotatingShareIcon {
+    width: 150px;
+    font-size: 150px;
+    height: 150px;
+    text-shadow: 0 0 11px #FFF;
+    text-align: center;
+    color: #ddd;
+    -moz-animation-duration: 7s;
+    -o-animation-duration: 7s;
+    -webkit-animation-duration: 7s;
+    animation-duration: 7s;
+}
+
+.shareIcon {
+    position: absolute;
+    top: 50%;
+    width: 80px;
+    line-height: 80px;
+    border-radius: 40px;
+    display: inline-block;
+    font-size: 60px;
+    left: 50%;
+    color: rgba(243, 243, 243, 0.91);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.shareFormContainer {
+    height: 265px;
+    text-align: center;
+    width: 400px;
+}
+
+.siteSttingsFormContainer {
+    padding: 10% 0;
+    width: 90%;
+    margin: 0 auto;
+    height: 100%;
+}
+
+.siteSettingsBody {
+    width: 500px;
+    padding: 0;
+    margin: 0;
+    height: 500px;
+}
+
+.bgColorSettingsWrapper {
+    width: 100%;
+}
+
+.siteSettingsFooter {
+    position: fixed;
+    bottom: 0;
+    text-align: right;
+    padding: 0 15px;
+    width: 100%;
+    display: inline-block;
+}
+
+.siteSettingsAction {
+    display: inline-block;
+    cursor: pointer;
+    margin: 0 10px;
+}
+.userAvatar {
+    top: 5px;
+    background-repeat: no-repeat;
+    left: 15px;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    background-position: center;
+    border-radius: 25px;
+}

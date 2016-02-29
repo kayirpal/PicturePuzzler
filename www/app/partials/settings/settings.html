@@ -1,0 +1,42 @@
+﻿<div id="siteSttingsForm" class="siteSttingsFormWrapper viewWrapper slideInRight"  ng-style="{backgroundColor: settings.backgroundStyle.color}">
+    <section class="siteSttingsFormContainer" adjustable width="500" height="500">
+        <div class="siteSettingsBody center">
+            <div class="iconWrapper text-center margin-b-15">
+                <article class="icon fa fa-3x fa-eye" ng-style="settings.iconStyle"></article>
+            </div>
+            <ul class="no-margin no-padding">
+                <li class="bgColorSettingsWrapper" ng-repeat="colorConfig in settings.colorConfigs">
+                    <h2 class="no-margin" ng-bind="colorConfig.title"></h2>
+                    <div class="iconBackgroundSetter colorPickerWrapper">
+
+                        <div class="colorPalletContainer float-right line-height-70">
+                            <span class="fa fa-3x fa-sliders" ng-click="colorConfig.showColorPicker = !colorConfig.showColorPicker"></span>
+                        </div>
+                        <article class="colorPalletWrapper" ng-hide="colorConfig.showColorPicker">
+                            <div class="colorPalletContainer" ng-repeat="color in colorConfig.colorPallet" ng-class="{selected:  colorConfig.selectedColorPallet === color}">
+                                <span class="colorPallet" ng-style="{backgroundColor: color}" ng-click="settings.selectPredefinedColor(colorConfig, color)"></span>
+                            </div>
+                        </article>
+                        <article class="colorPickerContainer" ng-show="colorConfig.showColorPicker">
+                            <span class="slider" ng-click="settings.setColor($event, colorConfig)"></span>
+                            <span class="settingsNobe nobe fa fa-5x fa-caret-up" ng-style="colorConfig.style"></span>
+                        </article>
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+    </section>
+
+    <section class="siteSettingsFooter">
+        <div class="resetSettingsButton siteSettingsAction" ng-click="app.resetSiteSettings()">
+            <span class="fa fa-4x fa-repeat"></span>
+        </div>
+        <div class="setSettingsButton siteSettingsAction" ng-click="app.setSiteSettings(settings)">
+            <span class="fa fa-4x fa-check-square-o"></span>
+        </div>
+        <div class="gotoDashboardButton siteSettingsAction" ng-click="app.gotoDashboard()">
+            <span class="fa fa-4x fa-home"></span>
+        </div>
+    </section>
+</div>

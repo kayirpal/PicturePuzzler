@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Picture Puzzler</title>
+
+    <!-- CSS Libraries -->
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/font-awesome.css" rel="stylesheet" />
+    <link href="css/animate.css" rel="stylesheet" />
+    <link href="css/hover.css" rel="stylesheet" />
+
+    <!--Custom CSS-->
+    <link href="css/custom/index.css" rel="stylesheet" />
+    <link href="css/custom/common.css" rel="stylesheet" />
+    <link href="css/custom/dashboard.css" rel="stylesheet" />
+    <link href="css/custom/enroll.css" rel="stylesheet" />
+
+    <!--libraries-->
+    <script src="scripts/angular.js"></script>
+    <script src="scripts/AngularUI/ui-router.min.js"></script>
+
+</head>
+<body ng-app="puzzler" ng-controller="mainEngine as app">
+
+    <header id="appHeader" class="">
+        <aside class="userInfoWrapper ng-hide" ng-show="true">
+            <div class="userNameDisplay" hm-tap="app.showHideUserActions()">
+                <span class="fa fa-user" ng-if="!app.loggedInUser.avatar"></span>
+                <span class="userAvatar" ng-if="app.loggedInUser.avatar" style="background-image : url('{{app.loggedInUser.avatar}}')"></span>
+            </div>
+            <div ng-class="app.userActionClasses">
+                <span class="fa" ng-class="app.loggedInUser?'fa-sign-out':'fa-sign-in'" title="{{app.loggedInUser?'sign out':'sign in'}}" hm-tap="app.loginOrOut('enroll')"></span>
+                <span class="fa fa-share-alt" title="Share" hm-tap="app.shareIt('share')"></span>
+                <span class="fa fa-cogs" title="settings" hm-tap="app.gotoPage('settings')"></span>
+            </div>
+        </aside>
+    </header>
+
+    <!-- App entry point-->
+    <div class="appWrapper" ng-style="app.backgroundStyle" ui-view></div>
+
+    <!-- Cordova reference, this is added to your app when it's built. -->
+    <script type="text/javascript" src="cordova.js"></script>
+
+    <!-- Libraries-->
+    <!-- Angular lib files-->
+    <script src="scripts/jquery-2.2.1.js"></script>
+    <script src="scripts/oAuth.js"></script>
+    <script src="scripts/md5.js"></script>
+
+    <!-- Touch library-->
+    <script src="scripts/hammer.js"></script>
+    <script src="scripts/angular-hammer.js"></script>
+
+    <!--Common site data-->
+    <script src="app/common/common.module.js"></script>
+    <script src="app/common/constants.js"></script>
+
+    <!--Services-->
+    <script src="app/services/service.module.js"></script>
+    <script src="app/services/api.js"></script>
+    <script src="app/services/storage.js"></script>
+    <script src="app/services/auth.js"></script>
+    <script src="app/services/secret.js"></script>
+    <script src="app/services/icon.js"></script>
+
+    <!--Directives-->
+    <script src="app/directives/directive.module.js"></script>
+    <script src="app/directives/animationEnd.js"></script>
+    <script src="app/directives/drawBoard.js"></script>
+    <script src="app/directives/extractIcon.js"></script>
+    <script src="app/directives/fileUpload.js"></script>
+    <script src="app/directives/adjustable.js"></script>
+    <script src="app/directives/captureImage.js"></script>
+    <!--App Modules-->
+
+    <!--Dashboard module-->
+    <script src="app/partials/dashboard/dashboard.module.js"></script>
+    <script src="app/partials/dashboard/dashboard.config.js"></script>
+    <script src="app/partials/dashboard/dashboard.js"></script>
+    <script src="app/partials/dashboard/dashboard.solve.js"></script>
+    <script src="app/partials/dashboard/dashboard.add.js"></script>
+
+    <!--Enroll module-->
+    <script src="app/partials/enroll/enroll.module.js"></script>
+    <script src="app/partials/enroll/enroll.js"></script>
+
+    <!--Settings module-->
+    <script src="app/partials/settings/settings.module.js"></script>
+    <script src="app/partials/settings/settings.js"></script>
+
+    <!--Share module-->
+    <script src="app/partials/share/share.module.js"></script>
+    <script src="app/partials/share/share.js"></script>
+
+    <!--Root module-->
+    <script src="app/app.module.js"></script>
+    <script src="app/app.config.js"></script>
+    <script src="app/app.js"></script>
+
+</body>
+</html>

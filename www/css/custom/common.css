@@ -1,0 +1,56 @@
+﻿.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.animated {
+    -moz-animation-duration: 1s;
+    -o-animation-duration: 1s;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+}
+.full-width{
+    width: 100%;
+}
+.full-height{
+    height: 100%;
+}
+.full-width-height {
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+}
+
+.width-75-p {
+    width: 75%;
+}
+
+.slow-animation {
+    -moz-animation-duration: 5s;
+    -o-animation-duration: 5s;
+    -webkit-animation-duration: 5s;
+    animation-duration: 5s;
+}
+
+.line-height-70 {
+    line-height: 70px;
+}
+.no-margin{
+    margin: 0;
+}
+.no-padding{
+    padding:0;
+}
+.margin-b-15{
+    margin-bottom: 15px;
+}
+.enterSecretWrapper{
+    width: 100%;
+    max-width: 500px;
+}

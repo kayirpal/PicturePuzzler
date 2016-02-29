@@ -1,0 +1,100 @@
+﻿<div id="enrollForm" class="enrollFormWrapper viewWrapper slideInRight">
+    <section class="formFieldWrapper v-middle">
+        <div class="formFieldContainer text-center" adjustable width="650" height="425">
+            <div class="emailFieldWrapper form-group clearfix">
+                <section class="circularListWrapper rotate-m-90">
+                    <header class="navButtonWrapper fieldComponent rotate-90" ng-click="enroll.checkProvidedEmail(enroll.userAuthData)">
+                        <span class="formSubmit rotate-90">Next</span>
+                    </header>
+                    <div class="circularListContainer" ng-style="enroll.rotateWheelValue">
+                        <ul class="domainNamesWrapper fieldComponent">
+                            <li class="domainNameWrapper" ng-repeat="emailProvider in enroll.emailProviders" ng-style="emailProvider.style"
+                                ng-click="enroll.rotateWheel($index, emailProvider)">
+                                <a class="domainNameContainer">
+                                    <span class="domainName" ng-bind="emailProvider.title"></span>
+                                </a>
+                            </li>
+                            <li class="domainNameWrapper customDomainName" ng-click="enroll.rotateWheel(8)">
+                                <a class="domainNameContainer">
+                                    <input class="domainName" placeholder="something.com" type="text" ng-model="enroll.userAuthData.domainName" />
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+                <section class="emailAliasSection v-middle">
+                    <header class="emailField fieldComponent" ng-class="{invalidEmail: enroll.userAuthData.invalidEmail}">
+                        <input ng-style="{'background-color':  enroll.currentThemeColor}" type="text" class="inputField  text-right" ng-model="enroll.userAuthData.uName"
+                               ng-keypress="enroll.checkPressedKey(enroll.userAuthData, $event)"
+                               ng-focus="enroll.userAuthData.invalidEmail = false"
+                               placeholder="email">
+                    </header>
+                    <div class="emailSeperator fieldComponent">
+                        <span class="emailFieldIndicator fa fa-map-marker rotate-m-90" ng-style="{color:  enroll.currentThemeColor}"></span>
+                        <span class="atSign" ng-style="{'background-color':  enroll.currentThemeColor}">@</span>
+                    </div>
+                </section>
+
+
+            </div>
+        </div>
+    </section>
+
+    <section id="connectOptionsWrapper" class="connectOptionsWrapper h-middle transition-all-medium" ng-class="{opened :enroll.showOtherOptions}">
+
+        <table ng-class="enroll.oAuthClasses">
+            <tbody>
+                <tr>
+                    <td>
+                        <article class="connectOption  animated " hm-tap="enroll.oAuthService('facebook', app)">
+                            <img class="fa fa-5x fa-spin facebook-icon slow-animation" src="images/facebook.png" />
+                            <span class="fa fa-1pt5x  fa-facebook"></span>
+                        </article>
+                    </td>
+                    <td>
+                        <article class="connectOption centralConnectOption" hm-tap="enroll.oAuthService('google', app)">
+                            <img class="fa  fa-5x  fa-counter-spin google-icon slow-animation" src="images/google.png" />
+                            <span class="fa fa-1pt5x fa-google-plus"></span>
+                        </article>
+                    </td>
+                    <td>
+                        <article class="connectOption  animated " hm-tap="enroll.oAuthService('twitter', app)">
+                            <img class="fa  fa-5x  fa-spin twitter-icon slow-animation" src="images/twitter.png" />
+                            <span class="fa fa-1pt5x fa-twitter"></span>
+                        </article>
+                    </td>
+                    <td class="connectOptionsHeader" ng-click="enroll.showOtherOptions = !enroll.showOtherOptions">
+                        <span class="fa fa-chevron-right transition-all-medium pointer"></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <div class="popupWrapper" ng-if="enroll.showPasswordScreen">
+        <article class="popupContainer passwordContainer">
+            <div class="profilePhotoWrapper text-center pointer">
+                <label file-upload="enroll.userAuthData">
+                    <span class="profilePhoto fa fa-user" ng-hide="enroll.userAuthData.rawFileUrl"></span>
+                    <span ng-if="enroll.userAuthData.rawFileUrl" class="uploadedIconWrapper margin-0 display-inline-block">
+                        <canvas class="showUploadedIcon" extract-icon="enroll.userAuthData" width="75" height="75" no-changes="true"></canvas>
+                    </span>
+                </label>           
+            </div>
+            <p class="displayEmailDetails text-center">
+                <span ng-bind="enroll.userAuthData.email"></span>
+            </p>
+            <span class="passwordField">
+                <input type="password" class="inputField" placeholder="" ng-model="enroll.userAuthData.uPassword" autofocus
+                       ng-keypress="enroll.checkPressedKey(app, $event, true)"
+                       ng-blur="enroll.login(app)" />
+            </span>
+        </article>
+    </div>
+
+    <section class="siteSettingsFooter">
+        <div class="gotoDashboardButton siteSettingsAction" ng-click="app.gotoDashboard()">
+            <span class="fa fa-4x fa-home"></span>
+        </div>
+    </section>
+</div>

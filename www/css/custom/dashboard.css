@@ -1,0 +1,1113 @@
+﻿
+/* Home Screen*/
+#homeScreen {
+    width: 100%;
+    height: 100%;
+}
+
+    #homeScreen .homeWrapper {
+        height: 100%;
+    }
+
+#homeScreenCanvas {
+    height: 95%;
+}
+
+.form-group > span {
+    margin: 0 5px;
+    font-size: 2.5em;
+}
+
+.ageSlider, .weightSlider {
+    width: 150px;
+    position: relative;
+    display: inline-block;
+    text-align: left;
+}
+
+.weightSlider {
+    width: 200px;
+}
+
+.ageSlider span {
+    -moz-transform-origin: 100% 100%;
+    -ms-transform-origin: 100% 100%;
+    -o-transform-origin: 100% 100%;
+    -webkit-transform-origin: 100% 100%;
+    transform-origin: 100% 100%;
+    -moz-transition: all 0.3s linear;
+    -o-transition: all 0.3s linear;
+    -webkit-transition: all 0.3s linear;
+    transition: all 0.3s linear;
+}
+
+.weightSlider img {
+    -moz-transition: all 0.3s linear;
+    -o-transition: all 0.3s linear;
+    -webkit-transition: all 0.3s linear;
+    transition: all 0.3s linear;
+    -moz-transform-origin: 0;
+    -ms-transform-origin: 0;
+    -o-transform-origin: 0;
+    -webkit-transform-origin: 0;
+    transform-origin: 0;
+}
+
+#homeScreenCanvas .form-group {
+    margin-bottom: 2em;
+}
+
+.form-group .lable-formClasses {
+    display: block;
+    font-size: small;
+}
+
+.female-selected .fa-male {
+    opacity: 0.5;
+}
+
+.male-selected .fa-female {
+    opacity: 0.5;
+}
+
+.updateUserInfo {
+    margin-top: 2em;
+}
+/*
+    height selector
+    */
+.heightSelector .heightSlider {
+    height: 150px;
+    position: relative;
+    display: block;
+}
+
+    .heightSelector .heightSlider span {
+        /* position: absolute; */
+        bottom: 0;
+        margin-top: 120px;
+        -moz-transform-origin: 50% 100%;
+        -ms-transform-origin: 50% 100%;
+        -o-transform-origin: 50% 100%;
+        -webkit-transform-origin: 50% 100%;
+        transform-origin: 50% 100%;
+    }
+
+.sliderSectionWrapper {
+    width: 100%;
+    height: 200px;
+}
+
+    .sliderSectionWrapper .sliderSections span {
+        font-size: 2.5em;
+    }
+
+    .sliderSectionWrapper > .sliderSections {
+        display: block;
+        height: 2em;
+    }
+
+    .sliderSectionWrapper .middleSliderSections {
+        height: 12em;
+    }
+
+.sliderSections .innerSliderSection {
+    /* height: 150px; */
+    display: inline-block;
+}
+
+.middleSliderSections .innerSliderSection {
+    line-height: 14em;
+    width: 2em;
+}
+
+.middleSliderSections .mainFigure {
+    width: 11em;
+}
+
+.mainFigure span {
+    -moz-transform-origin: 50%;
+    -ms-transform-origin: 50%;
+    -o-transform-origin: 50%;
+    -webkit-transform-origin: 50%;
+    transform-origin: 50%;
+}
+
+
+/*
+    form validation classes
+    */
+
+.inValidEmail .emailFieldIndicator {
+    background-color: #ae1111;
+}
+
+.validEmail .emailFieldIndicator {
+    background-color: #5cb85c;
+}
+
+.inValidPassword .passwordFieldIndicator {
+    background-color: #ae1111;
+}
+
+
+
+/* view*/
+.iconsWrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 90%;
+    height: 90%;
+    margin: auto;
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+}
+
+    .iconsWrapper .iconWrapper {
+        margin: 10px;
+        float: left;
+        display: inline-block;
+    }
+
+.iconWrapper .icon {
+    width: 90px;
+    border-radius: 10px;
+    background-color: rgba(0,0,0,0.75);
+    background-size: contain;
+    height: 90px;
+    box-shadow: 1px 1px 10px 1px #000;
+    text-align: center;
+    font-size: 45px;
+    line-height: 90px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.createTextIconContainer .iconWrapper .icon {
+    float: none;
+}
+
+.icon .disabled {
+    display: inline;
+}
+
+.iconWrapper .icon:hover {
+    background-color: rgba(0,0,0,0.75);
+}
+
+.userActionWrapper {
+    position: fixed;
+    top: 0;
+    right: 0;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    -webkit-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    background-color: rgba(0,0,0,0.65);
+    width: 100%;
+    height: 100%;
+}
+
+    .userActionWrapper.closed {
+        right: -100%;
+    }
+
+.containerDoor {
+    float: left;
+    height: 100%;
+    width: 5%;
+    display: none;
+    text-align: center;
+    color: #fff;
+    background-color: rgba(51, 221, 85, 0.5);
+}
+
+.door {
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    position: absolute;
+    top: 50%;
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    -moz-transform-origin: 50% 50%;
+    -ms-transform-origin: 50% 50%;
+    -o-transform-origin: 50% 50%;
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+}
+
+.closed .door {
+    -moz-transform: translate(-50%,-50%) rotate(180deg);
+    -ms-transform: translate(-50%,-50%) rotate(180deg);
+    -o-transform: translate(-50%,-50%) rotate(180deg);
+    -webkit-transform: translate(-50%,-50%) rotate(180deg);
+    transform: translate(-50%,-50%) rotate(180deg);
+}
+
+
+
+.actionsSection {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+
+.actualContainer > .iconCreatorSection {
+    width: 100%;
+    height: 58%;
+}
+
+
+.browseImageIcon, .snapImageIcon, .displayHintWrapper {
+    min-height: 250px;
+    min-width: 450px;
+    display: inline-block;
+    margin: 0 auto;
+    padding: 35px;
+    border-radius: 50px;
+    position: relative;
+    background: radial-gradient(rgba(34, 68, 102, 1),rgba(17, 34, 51, 0.86));
+    line-height: 160px;
+}
+
+    .browseImageIcon label {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        color: #acb;
+    }
+
+    .browseImageIcon span {
+        cursor: pointer;
+    }
+
+    .browseImageIcon .changeFile {
+        position: absolute;
+        right: 35px;
+        top: 3px;
+        background-color: #234;
+        padding: 0.25em;
+        border-radius: 1.5em;
+        box-shadow: 0 0 10px 0 #fff;
+    }
+
+.sctionWrapper.iconSource {
+    width: 100%;
+    height: 90%;
+    position: relative;
+    padding: 1% 0;
+}
+
+.iconPreview {
+    margin: 1em 0;
+    height: 5em;
+}
+
+.textIconCreator, .browseIcon {
+    background-color: #fff;
+    color: #000;
+    border: 0;
+    font-size: 1.75em;
+    margin: auto;
+    text-align: center;
+}
+
+.formActionsWrapper > .btn:hover {
+    color: #fff;
+}
+
+.formActionsWrapper > .btn {
+    margin: 5px;
+    width: 30%;
+    min-width: 100px;
+    border-radius: 0.25em;
+    border: 0;
+    color: #abc;
+}
+
+.formActionsWrapper > .createIcon {
+    background-color: #041;
+}
+
+.formActionsWrapper > .abortIcon {
+    background-color: #800;
+}
+
+.formActionsWrapper .previewIcon {
+    background-color: #123;
+}
+
+.drawingBoard canvas {
+    background-color: #333;
+    cursor: url("/images/pencil.png"), auto;
+    border: double 2px #ED3;
+}
+
+.drawingBoard .paintMode {
+    cursor: url("/images/brush.png"), auto;
+}
+
+.drawingBoard .eraserMode {
+    cursor: url("/images/eraser.png"), auto;
+}
+
+.boardActions .action {
+    cursor: pointer;
+    font-size: 3em;
+}
+
+    .boardActions .action:hover, .brushWidthWrapper .action:hover {
+        color: #032;
+    }
+
+.drawIconWrapper {
+    margin: 0 auto;
+    padding: 25px 0;
+    width: 500px;
+    height: 400px;
+}
+
+.boardActions {
+    height: 50px;
+    display: inline-block;
+}
+
+.drawIconWrapper .colorPicker {
+    float: right;
+}
+
+.brushWidthWrapper .actionWrapper {
+    margin: 0.25em;
+    cursor: pointer;
+}
+
+.brushWidthWrapper .action {
+    -webkit-transform-origin: 50% 50%;
+    -moz-transform-origin: 50% 50%;
+    -ms-transform-origin: 50% 50%;
+    -o-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+}
+
+.brushWidthWrapper .veryThin {
+    -moz-transform: scale(0.5);
+    -ms-transform: scale(0.5);
+    -o-transform: scale(0.5);
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+}
+
+.brushWidthWrapper .thin {
+    -moz-transform: scale(0.75);
+    -ms-transform: scale(0.75);
+    -o-transform: scale(0.75);
+    -webkit-transform: scale(0.75);
+    transform: scale(0.75);
+}
+
+.brushWidthWrapper .thick {
+    -moz-transform: scale(1.25);
+    -ms-transform: scale(1.25);
+    -o-transform: scale(1.25);
+    -webkit-transform: scale(1.25);
+    transform: scale(1.25);
+}
+
+.brushWidthWrapper .veryThick {
+    -moz-transform: scale(1.5);
+    -ms-transform: scale(1.5);
+    -o-transform: scale(1.5);
+    -webkit-transform: scale(1.5);
+    transform: scale(1.5);
+}
+
+.colorPickerWrapper, .strokeWidthWrapper {
+    position: relative;
+    height: 70px;
+    text-align: center;
+    display: inline-block;
+    width: 100%;
+    margin: 11px 0;
+}
+
+.brushWrapper {
+    display: inline-block;
+}
+
+.actionWrapper {
+    display: inline-block;
+    margin: 5px 10px;
+}
+
+.accessoryWrapper {
+    float: right;
+    margin: 5px 10px;
+    cursor: pointer;
+    /*color: #DD4E4E;*/
+}
+
+.boardAccessories {
+    display: inline-block;
+    float: right;
+}
+
+.brushWidth {
+    /* margin: 0 0.25em; */
+    cursor: pointer;
+    margin: 0 2px;
+    /* transform-origin: 0 95%; */
+}
+
+.downloadImageIcon {
+    color: rgba(136, 152, 222, 0.9);
+}
+
+.uploadImageIcon {
+    color: rgba(66, 177, 115, 0.9);
+}
+
+.configureBoardIcon {
+    float: right;
+    color: rgba(221, 78, 78, 0.9);
+}
+
+    .configureBoardIcon span {
+        font-size: 2.5em;
+    }
+
+.configureBoard .slider, .iconBackgroundSetter .slider {
+    width: 450px;
+    height: 25px;
+    margin: 0 10px;
+    border-radius: 10px;
+    display: inline-block;
+    cursor: ew-resize;
+}
+
+.iconBackgroundSetter .slider {
+    background: linear-gradient(to right,#fff,yellow, red,green,blue,black);
+    margin: 0;
+}
+
+.redComponent .slider {
+    background: linear-gradient(to right,#fff, red);
+}
+
+.greenComponent .slider {
+    background: linear-gradient(to right, #fff, #0f0);
+}
+
+.blueComponent .slider {
+    background: linear-gradient(to right,#fff, #00f);
+}
+
+.strokeWidthWrapper .strokeWidth {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 00px 22px 402px;
+    border-color: transparent transparent #000000 transparent;
+}
+
+.configureBoard .nobe, .iconBackgroundSetter .nobe {
+    position: absolute;
+    top: 3px;
+    -webkit-transition: all 0.35s ease;
+    -o-transition: all 0.35s ease;
+    -moz-transition: all 0.35s ease;
+    transition: all 0.35s ease;
+    left: 220px;
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    cursor: ew-resize;
+}
+
+.iconBackgroundSetter .nobe {
+    color: rgba(0,0,0,0.75);
+    left: 450px;
+    top: 15px;
+}
+
+.redComponent .nobe {
+    color: #f88;
+}
+
+.greenComponent .nobe {
+    color: #8f8;
+}
+
+.blueComponent .nobe {
+    color: #88f;
+}
+
+.strokeWidthWrapper .nobe {
+    -moz-transform-origin: 50% 40%;
+    -ms-transform-origin: 50% 40%;
+    -o-transform-origin: 50% 40%;
+    -webkit-transform-origin: 50% 40%;
+    transform-origin: 50% 40%;
+    color: #888;
+}
+
+.actionWrapper.selected {
+    color: rgb(100,100,100);
+}
+
+.selectIcon {
+    width: 90%;
+    padding: 30px 0;
+    margin: auto;
+    position: relative;
+    overflow: auto;
+    height: 100%;
+}
+
+.iconSource:after, .iconSource:before {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    left: 0;
+    pointer-events: none;
+    background-image: linear-gradient(to bottom, rgba(119, 119, 119, 0), rgb(20, 41, 61) 90%);
+    width: 100%;
+    height: 11%;
+}
+
+#comment, .iconSource:before {
+    top: 0;
+    bottom: 100%;
+    background-image: linear-gradient(to bottom, rgb(20, 42, 62), rgba(119, 119, 119, 0) 90%);
+}
+
+.selectIcon .showPreviousWrapper,
+.selectIcon .showNextWrapper {
+    position: absolute;
+    top: 50%;
+    width: 10%;
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.selectIcon .showNextWrapper {
+    right: 0;
+}
+
+.selectIcon .iconListWrapper {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+}
+
+.iconListWrapper .iconWrapper {
+    display: inline-block;
+    margin: 10px;
+}
+
+.iconListWrapper .selected .icon {
+    border: 1px solid #fff;
+    background-color: #077;
+    -moz-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    -o-transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+}
+
+.showPrevious, .showNext {
+    opacity: 0.25;
+    color: #000;
+    cursor: pointer;
+}
+
+    .showPrevious:hover, .showNext:hover {
+        opacity: 0.75;
+    }
+
+.headerWrapper {
+    text-align: center;
+}
+
+
+.uppercase {
+    text-transform: capitalize;
+}
+
+
+.switch {
+    position: absolute;
+    bottom: 0;
+    right: 5%;
+    color: #041;
+}
+
+
+.caseToggleWrapper {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 0 10px;
+}
+
+.alphabetsWrapper .selected {
+    -moz-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    -o-transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+    background-color: #077;
+    border: 1px solid #EFB;
+}
+
+.passwordPanelWrapper, .settingsWrapper {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    background: linear-gradient(to bottom, rgba(17, 34, 51, 0.9), rgba(34, 68, 102, 1),rgba(17, 34, 51, 0.9) 100%);
+    height: 100%;
+}
+
+.currentStepWrapper {
+    position: relative;
+    height: 100%;
+}
+
+.passwordPanel {
+    display: block;
+    width: 100%;
+    padding: 0 1em;
+    height: 80%;
+}
+
+.createTextIconContainer {
+    width: 550px;
+    height: 275px;
+    padding: 25px;
+}
+
+    .currentStepContainer input, .createTextIconContainer input {
+        display: block;
+        font-size: 2em;
+        width: 100%;
+        margin: 1em auto;
+        padding: 0 0.5em;
+        border: 1px solid #dadada;
+        border-radius: 5px;
+    }
+
+        .currentStepContainer input:focus, .createTextIconContainer input:focus {
+            outline: none;
+            border-color: #17C;
+            box-shadow: 0 0 15px #17C;
+        }
+
+
+.v-week .password {
+    color: #f00;
+}
+
+.week .password {
+    color: #700;
+}
+
+.normal .password {
+    color: #770;
+}
+
+.strong .password {
+    color: #070;
+}
+
+.v-strong .password {
+    color: #0f0;
+}
+
+.currentStepContainer > input.samePassword {
+    color: #0f0;
+}
+
+.currentStepContainer > input.diffPasswords {
+    border-color: #a00;
+    color: #a00;
+    box-shadow: 0 0 15px #F11;
+    background-color: rgba(238, 51, 17, 0);
+    -moz-animation: errorField 2s ease-in-out;
+    -o-animation: errorField 2s ease-in-out;
+    -webkit-animation: errorField 2s ease-in-out;
+    animation: errorField 2s ease-in-out;
+}
+
+.stepDescription .headerIcon {
+    -moz-animation-iteration-count: infinite;
+    -o-animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -moz-animation-duration: 2s;
+    -o-animation-duration: 2s;
+    -webkit-animation-duration: 2s;
+    animation-duration: 2s;
+    height: 75px;
+}
+
+.createPassHint .headerIcon {
+    -moz-animation: glow 1s linear infinite;
+    -o-animation: glow 1s linear infinite;
+    -webkit-animation: glow 1s linear infinite;
+    animation: glow 1s linear infinite;
+    margin: 0 0.1em;
+    color: #F52;
+}
+
+.createPassHint .stepDescription > .headerIcon  {
+    color: #fff;
+}
+
+.stepDescription .fa-key {
+    -moz-transform: rotate(135deg);
+    -ms-transform: rotate(135deg);
+    -o-transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+    transform: rotate(135deg);
+    height: 40px;
+}
+
+.currentStepActions {
+    position: absolute;
+    bottom: 0;
+    padding: 0 2em;
+    height: 10%;
+    text-align: right;
+    width: 100%;
+    min-height: 4em;
+}
+
+.nextStepIcon:hover {
+    color: #2D8;
+    -moz-animation-delay: 0.2s;
+    -o-animation-delay: 0.2s;
+    -webkit-animation-delay: 0.2s;
+    animation-delay: 0.2s;
+    -moz-animation: nextStep 1s ease-in-out;
+    -o-animation: nextStep 1s ease-in-out;
+    -webkit-animation: nextStep 1s ease-in-out;
+    animation: nextStep 1s ease-in-out;
+}
+
+.selectQuestion, .createIcon {
+    color: #0CB;
+    -webkit-transition: all 0.5s ease-in;
+    -o-transition: all 0.5s ease-in;
+    -moz-transition: all 0.5s ease-in;
+    transition: all 0.5s ease-in;
+}
+
+    .selectQuestion:hover {
+        -moz-transform: scale(1.25);
+        -ms-transform: scale(1.25);
+        -o-transform: scale(1.25);
+        -webkit-transform: scale(1.25);
+        transform: scale(1.25);
+    }
+
+
+/* Let's get this party started */
+::-webkit-scrollbar {
+    width: 0;
+}
+
+.createHintWrapper, .methodToCreateIcon .buttonWrapper {
+    display: inline-block;
+    /* width: 200px; */
+    /* line-height: 175px; */
+    /* background-color: #333; */
+    margin: 25px;
+    text-align: center;
+}
+
+.createHintContainer .hintIcon, .buttonWrapper .button {
+    -moz-transition: transform 0.25s linear;
+    -o-transition: transform 0.25s linear;
+    -webkit-transition: transform 0.25s linear;
+    transition: transform 0.25s linear;
+    -moz-transform-origin: 50% 50%;
+    -ms-transform-origin: 50% 50%;
+    -o-transform-origin: 50% 50%;
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    box-shadow: 10px 10px 10px 10px #123;
+    background-color: #F52;
+    cursor: pointer;
+    border-radius: 30px;
+    color: rgba(51, 34, 34, 0.85);
+    width: 150px;
+    line-height: 150px;
+    font-size: 70px;
+}
+
+    .createHintContainer .hintIcon:hover, .buttonWrapper .button:hover {
+        -moz-transform: scale(1.15);
+        -ms-transform: scale(1.15);
+        -o-transform: scale(1.15);
+        -webkit-transform: scale(1.15);
+        transform: scale(1.15);
+    }
+
+
+.createHintForm {
+    /* overflow: auto; */
+    width: 100%;
+}
+
+.createHintFormContainer {
+    width: 100%;
+    display: table;
+    -moz-transform-origin: 50% 50%;
+    -ms-transform-origin: 50% 50%;
+    -o-transform-origin: 50% 50%;
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    /* max-height: 22em; */
+    table-layout: fixed;
+}
+/*Create hint*/
+.createHintForm select,
+.createHintForm input {
+    width: 80%;
+    display: inline-block;
+    background-color: #ddd;
+    color: #333;
+    font-size: 1.25em;
+    margin: 1em 0;
+    height: 2.5em;
+}
+
+.moreQuestions {
+    -moz-transition: transform 0.3s ease-in-out;
+    -o-transition: transform 0.3s ease-in-out;
+    -webkit-transition: transform 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out;
+    color: rgba(51, 221, 85, 0.5);
+    cursor: pointer;
+}
+
+.questionareWrapper {
+    display: table-cell;
+    width: 475px;
+    position: relative;
+    text-align: center;
+}
+
+
+.removeQuestion {
+    color: #FC6969;
+    -moz-transition: transform 0.3s ease-in-out;
+    -o-transition: transform 0.3s ease-in-out;
+    -webkit-transition: transform 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out;
+}
+
+    .moreQuestions:hover, .removeQuestion:hover {
+        -moz-transform: scale(1.25);
+        -ms-transform: scale(1.25);
+        -o-transform: scale(1.25);
+        -webkit-transform: scale(1.25);
+        transform: scale(1.25);
+    }
+
+    .moreQuestions:active, .removeQuestion:active {
+        -moz-transform: scale(1.15);
+        -ms-transform: scale(1.15);
+        -o-transform: scale(1.15);
+        -webkit-transform: scale(1.15);
+        transform: scale(1.15);
+    }
+
+.customStepActions, .nextStepButton, .homeButton {
+    display: inline-block;
+    margin: 0 5px;
+}
+
+.customStepActions {
+    margin: 0 5px;
+}
+
+.prevQuestion, .nextQuestion {
+    position: absolute;
+    top: 50%;
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.prevQuestion {
+    left: 0;
+}
+
+.nextQuestion {
+    right: 0;
+}
+
+.siteSttingsFormContainer .colorPickerContainer,
+.siteSttingsFormContainer .colorPalletWrapper {
+    display: inline-block;
+    text-align: center;
+    width: 460px;
+    line-height: 70px;
+}
+
+.colorPalletContainer {
+    display: inline-block;
+    padding-top: 0.5em;
+}
+
+    .colorPalletContainer .colorPallet {
+        display: inline-block;
+        width: 4em;
+        height: 2em;
+        cursor: pointer;
+        margin: 0 0.5em;
+        border-radius: 1em;
+    }
+
+.selected .colorPallet {
+    border: 2px solid #fff;
+}
+
+.saveChanges {
+    color: rgba(51, 221, 85, 0.5);
+}
+
+
+.uploadedIconWrapper img {
+    max-height: 15em;
+}
+
+.showUploadedIcon {
+    vertical-align: middle;
+    border-radius: 1em;
+    box-shadow: 2px 2px 15px 1px #000;
+}
+
+
+.passwordTextbox {
+    background-color: #154;
+    color: #fff;
+}
+
+.drawingBoard {
+    text-align: center;
+    height: 250px;
+    padding: 10px 0;
+}
+
+.configureBoard {
+    text-align: center;
+    height: 250px;
+    padding: 10px 0;
+}
+
+
+.currentStepContainer .headerIcon {
+    font-size: 3em;
+    display: inline-block;
+    vertical-align: sub;
+}
+
+
+.displayHintWrapper {
+    width: 90%;
+    -moz-animation-duration: 1s;
+    -o-animation-duration: 1s;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    height: 16em;
+}
+
+.displayHintContainer {
+    /* width: 90%; */
+    height: 100%;
+    background-repeat: no-repeat;
+    margin: 0 auto;
+    background-position: center;
+    border-radius: 1em;
+    background-size: 22em 15em;
+}
+
+.guessStatus {
+    font-size: 10em;
+    line-height: 1.25em;
+}
+
+.deleteIcon {
+    color: rgb(42, 119, 187);
+}
+
+.currentStepContainer {
+    text-align: center;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+
+    .currentStepContainer .passwordTextbox {
+        display: inline-block;
+        /* width: 100%; */
+    }
+
+.stepDescription {
+    display: block;
+    height: 10%;
+    min-height: 5em;
+    padding: 1em 3em;
+}
+
+.iconCreatorContainer {
+    text-align: center;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+
+.createHintscontainer, .methodToCreateIcon {
+    width: 400px;
+    height: 200px;
+    margin: 0 auto;
+}
+
+.iconCreatorSection {
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+}
+
+.nextStepWrapper {
+    display: inline-block;
+    font-size: 4em;
+    width: 100%;
+    padding: 0 25px;
+}
+
+.guessPhraseWrapper {
+    height: auto;
+}
+
+.userActionWrapper .passwordTextbox {
+    width: 85%;
+}

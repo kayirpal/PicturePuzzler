@@ -1,0 +1,13 @@
+<div class="guessPhraseWrapper currentStepContainer center">
+
+    <form class="createPassHint" ng-submit="solve.guessPhrase(solve.guessedPhrase, dashboard.currentStep.message)">
+        <input type="text" class="passwordTextbox password" cols="3" autofocus placeholder="Check if you remember it" ng-keydown="solve.showHint = false"
+               ng-model="solve.guessedPhrase">
+        <span class="fa headerIcon fa-lightbulb-o fa-3x pointer" ng-click="solve.showHideHint(dashboard.currentStep)"></span>
+    </form>
+    <div class="displayHintWrapper animated" ng-class="solve.showHint?'flipInX':'flipOutX'">
+        <article class="displayHintContainer" ng-style="{'background-image': solve.hintDetails.background}">
+            <span class="fa guessStatus" ng-if="!solve.hintDetails.background" ng-style="{color: solve.bulbColor}" ng-class="solve.thumbsClass"></span>
+        </article>
+    </div>
+</div>

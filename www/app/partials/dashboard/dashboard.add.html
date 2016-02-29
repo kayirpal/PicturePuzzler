@@ -1,0 +1,38 @@
+<div class="currentStepContainer" >
+    <section class="createHintsWrapper display-inline-block full-height" ng-if="!add.selectedCreator"  adjustable width="500" height="250">
+        <header></header>
+        <div class="createHintscontainer center">
+            <article ng-repeat="hintOption in add.createOptions" class="createHintWrapper" ng-class="hintOption.wrapperClass">
+                <div class="createHintContainer">
+                    <span class="hintIcon fa fa-4x" ng-class="hintOption.iconClass" ng-click="add.selectPuzzleCreator(dashboard.currentStep, hintOption)"></span>
+                </div>
+            </article>
+        </div>
+    </section>
+    <section class="createHintFormWrapper full-width-height" ng-if="add.selectedCreator">
+        <header></header>
+        <div  class="createHintForm center" ng-switch on="add.selectedCreator.id">
+
+            <div class="browseImageIcon" ng-switch-when="1" ng-repeat="uploader in [add.selectedCreator]">
+                <label file-upload="uploader">
+                    <span class="hvr-pulse-grow fa fa-5x fa-upload" ng-hide="uploader.rawFileUrl"></span>
+                    <span class="changeFile fa fa-2x fa-exchange" ng-show="uploader.rawFileUrl"></span>
+                </label>
+                <p ng-if="uploader.rawFileUrl" class="uploadedIconWrapper margin-0 display-inline-block">
+                    <canvas class="showUploadedIcon" extract-icon="uploader" width="400" height="300"></canvas>
+                </p>
+            </div>
+            
+            <div class="browseImageIcon" ng-switch-when="2" ng-repeat="camera in [add.selectedCreator]">
+                <label capture-image="camera" ng-click="camera.capture()">
+                    <span class="hvr-pulse-grow fa fa-5x fa-camera" ng-hide="camera.rawFileUrl"></span>
+                    <span class="changeFile fa fa-2x fa-camera" ng-show="camera.rawFileUrl"></span>
+                </label>
+                <p ng-if="camera.rawFileUrl" class="uploadedIconWrapper margin-0 display-inline-block">
+                    <canvas class="showUploadedIcon" extract-icon="camera" width="400" height="300"></canvas>
+                </p>
+            </div>
+
+        </div>
+    </section>
+</div>

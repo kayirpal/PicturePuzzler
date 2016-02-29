@@ -1,0 +1,24 @@
+﻿<div id="shareForm" class="shareFormWrapper viewWrapper" >
+    <section class="full-width-height" adjustable width="400" height="265">
+        <div class="shareFormContainer center">
+            <a class="shareIconWrapper animated" target="_blank" ng-repeat="shareOption in share.shareOptions" 
+               ng-class="shareOption.animateClass" 
+               ng-href="{{shareOption.dataAction?'whatsapp://send?text='+shareOption.shareLink:shareOption.shareLink}}"
+               data-action="{{shareOption.dataAction}}" >
+                <span class="fa  fa-cog rotatingShareIcon" ng-style="{color: shareOption.spinnerColor}" ng-class="$index%2===0?'fa-spin':'fa-counter-spin'"></span>
+                <i class="shareIcon" ng-class="shareOption.classList" ng-style="{backgroundColor: shareOption.spinnerColor }"></i>
+            </a>
+
+            <a class="shareIconWrapper animated rotateInUpLeft" ng-click="share.shareInfo()">
+                <span class="fa  fa-cog rotatingShareIcon fa-counter-spin" ng-style="{color: '#4AC456'}"></span>
+                <i class="fa fa-whatsapp shareIcon" ng-style="{backgroundColor: '#4AC456' }"></i>
+            </a>
+        </div>
+    </section>
+
+    <section class="siteSettingsFooter">
+        <div class="gotoDashboardButton siteSettingsAction" ng-click="app.gotoDashboard()">
+            <span class="fa fa-4x fa-home"></span>
+        </div>
+    </section>
+</div>

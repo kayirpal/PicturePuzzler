@@ -1,0 +1,15 @@
+﻿(function () {
+    "use strict";
+
+    // Define main module
+    angular.module("puzzler", ["ui.router"
+        , 'hmTouchEvents'
+        , "puzzler.share"
+        , "puzzler.common"
+        , "puzzler.services"
+        , "puzzler.directives"
+        , "puzzler.enroll"
+        , "puzzler.dashboard"
+        , "puzzler.settings"
+    ]);
+}());

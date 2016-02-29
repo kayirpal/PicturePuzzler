@@ -1,0 +1,381 @@
+﻿#enrollForm {
+    height: 100%;
+}
+
+    #enrollForm .enrollFormWrapper {
+        height: 100%;
+        position: relative;
+    }
+
+.formFieldWrapper {
+    width: 100%;
+    text-align: center;
+}
+
+    .formFieldWrapper .navButtonWrapper {
+        background-color: rgba(0, 0, 0, 0.75);
+        border-radius: 4em;
+        height: 6em;
+        width: 6em;
+        position: absolute;
+        color: #fff;
+        cursor: pointer;
+        font-size: 1.25em;
+        text-align: left;
+        border: 2px solid rgba(255, 255, 255, 0.85);
+        left: 50%;
+        padding-left: 0.5em;
+        top: 50%;
+        margin-left: -3em;
+        margin-top: -3em;
+        -moz-transition: all 0.35s ease;
+        -o-transition: all 0.35s ease;
+        -webkit-transition: all 0.35s ease;
+        transition: all 0.35s ease;
+        z-index: 12;
+        /* bottom: -30px; */
+        line-height: 6em;
+    }
+
+
+        .formFieldWrapper .navButtonWrapper:hover {
+            background-color: rgba(255, 255, 255, 0.35);
+            color: rgba(0, 0, 0, 0.75);
+        }
+
+    .formFieldWrapper > .form-group {
+        -moz-animation-duration: 0.5s;
+        -o-animation-duration: 0.5s;
+        -webkit-animation-duration: 0.5s;
+        animation-duration: 0.5s;
+    }
+
+        .formFieldWrapper > .form-group:nth-child(1) {
+            -moz-animation-delay: 0.4s;
+            -o-animation-delay: 0.4s;
+            -webkit-animation-delay: 0.4s;
+            animation-delay: 0.4s;
+        }
+
+        .formFieldWrapper > .form-group:nth-child(2) {
+            -moz-animation-delay: 0.3s;
+            -o-animation-delay: 0.3s;
+            -webkit-animation-delay: 0.3s;
+            animation-delay: 0.3s;
+        }
+
+        .formFieldWrapper > .form-group:nth-child(3) {
+            -moz-animation-delay: 0.2s;
+            -o-animation-delay: 0.2s;
+            -webkit-animation-delay: 0.2s;
+            animation-delay: 0.2s;
+        }
+
+.formFieldContainer {
+    /* padding: 0 15px; */
+    display: inline-block;
+    width: 100%;
+    -moz-transform-origin: 100% 50%;
+    -ms-transform-origin: 100% 50%;
+    -o-transform-origin: 100% 50%;
+    -webkit-transform-origin: 100% 50%;
+    transform-origin: 100% 50%;
+    -moz-transition: transform 0.35s ease;
+    -o-transition: transform 0.35s ease;
+    -webkit-transition: transform 0.35s ease;
+    transition: transform 0.35s ease;
+}
+
+.inputField {
+    background-color: rgba(51, 51, 51, 0.9);
+    color: rgba(230, 230, 230, 0.9);
+    border: 0;
+    width: 100%;
+    border-radius: 1em;
+    box-shadow: 0 0 1px #fff;
+    font-size: 1.5em;
+    display: inline-block;
+    height: 2em;
+    padding: 0 1em;
+}
+
+
+.emailFieldIndicator, .passwordFieldIndicator {
+    color: #36383A;
+    font-size: 3em;
+}
+
+
+
+/* Splash screen*/
+
+.connectUsing {
+    height: 11%;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.connectOptionsWrapper .connectOptionGrid {
+    -moz-transform-origin: 50%;
+    -ms-transform-origin: 50%;
+    -o-transform-origin: 50%;
+    -webkit-transform-origin: 50%;
+    transform-origin: 0 50%;
+    margin: auto;
+}
+
+.connectOptionGrid tbody tr td {
+    width: 4.5em;
+}
+
+.tumblr-icon {
+    color: #529ecc;
+}
+
+.linkedin-icon {
+    color: #65acd1;
+}
+
+.segoe-ui-symbol {
+    font-family: "Segoe UI Symbol";
+}
+
+.emailFieldWrapper {
+    height: 425px;
+    float: right;
+    width: 650px;
+    /* padding: 0 15PX; */
+    position: relative;
+    margin: 0;
+}
+
+    .emailFieldWrapper > .fieldComponent {
+        float: right;
+        line-height: 2em;
+        padding: 0;
+        position: relative;
+        margin: 0 10px;
+    }
+
+.circularListWrapper {
+    display: inline-block;
+    width: 30em;
+    right: -15em;
+    height: 30em;
+    position: absolute;
+}
+
+.circularListContainer {
+    width: 30em;
+    height: 30em;
+    overflow: hidden;
+    border: 1px solid #fff;
+    position: absolute;
+    z-index: 10;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    border-radius: 50%;
+    -moz-animation: rotateIn 2s ease;
+    -o-animation: rotateIn 2s ease;
+    -webkit-animation: rotateIn 2s ease;
+    animation: rotateIn 2s ease;
+}
+
+.domainNamesWrapper {
+    margin: 0;
+    padding: 0;
+    background-color: rgba(51, 51, 51, 0.8);
+}
+
+
+.domainNameWrapper {
+    background-color: rgba(255, 0, 0, 0.21);
+    position: absolute;
+    width: 15em;
+    height: 15em;
+    border: 1px solid #fff;
+    -moz-transform-origin: 100% 100%;
+    -ms-transform-origin: 100% 100%;
+    -o-transform-origin: 100% 100%;
+    -webkit-transform-origin: 100% 100%;
+    transform-origin: 100% 100%;
+    overflow: hidden;
+}
+
+.domainNameContainer {
+    position: absolute;
+    bottom: 0;
+    right: 4em;
+    color: #fff;
+    cursor: pointer;
+    width: 6em;
+    -moz-transform: skew(-50deg) rotate(-70deg);
+    -ms-transform: skew(-50deg) rotate(-70deg);
+    -o-transform: skew(-50deg) rotate(-70deg);
+    -webkit-transform: skew(-50deg) rotate(-70deg);
+    transform: skew(-50deg) rotate(-70deg);
+    height: 7em;
+}
+
+    .domainNameContainer:hover, .domainNameContainer:active, .domainNameContainer:after {
+        color: #fff;
+    }
+
+.domainName {
+    margin-top: 3em;
+    /* font-size: 1em; */
+    display: inline-block;
+    -moz-transform-origin: 35% 100%;
+    -ms-transform-origin: 35% 100%;
+    -o-transform-origin: 35% 100%;
+    -webkit-transform-origin: 35% 100%;
+    transform-origin: 35% 100%;
+    -moz-transform: rotate(90deg) scale(1.25);
+    -ms-transform: rotate(90deg) scale(1.25);
+    -o-transform: rotate(90deg) scale(1.25);
+    -webkit-transform: rotate(90deg) scale(1.25);
+    transform: rotate(90deg) scale(1.25);
+}
+
+.atSign {
+    position: absolute;
+    display: inline-block;
+    /* border-radius: 1em; */
+    top: 15px;
+    width: 17px;
+    left: 5px;
+    line-height: 15px;
+    background-color: #36383A;
+    height: 15px;
+}
+
+.emailSeperator {
+    float: left;
+    position: relative;
+    width: 3em;
+    -moz-transform: scale(1.75);
+    -ms-transform: scale(1.75);
+    -o-transform: scale(1.75);
+    -webkit-transform: scale(1.75);
+    transform: scale(1.75);
+    -moz-transform-origin: 15% 50%;
+    -ms-transform-origin: 15% 50%;
+    -o-transform-origin: 15% 50%;
+    -webkit-transform-origin: 15% 50%;
+    transform-origin: 5% 50%;
+}
+
+.customDomainName {
+    background-color: rgba(51, 51, 51, 0.9);
+    -moz-transform: rotate(230deg) skew(50deg);
+    -ms-transform: rotate(230deg) skew(50deg);
+    -o-transform: rotate(230deg) skew(50deg);
+    -webkit-transform: rotate(230deg) skew(50deg);
+    transform: rotate(230deg) skew(50deg);
+}
+
+    .customDomainName .domainName {
+        font-size: 1em;
+        margin-top: 3em;
+        color: #123;
+        margin-left: -1em;
+        padding-left: 10px;
+        border: 0;
+        width: 10em;
+        -moz-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+        -webkit-transform: rotate(90deg);
+        transform: rotate(90deg);
+    }
+
+.emailAliasSection {
+    width: 450px;
+}
+
+.emailField {
+    width: 27em;
+    float: left;
+}
+
+.connectOptionsHeader {
+    text-align: right;
+    color: rgba(255, 255, 255, 0.66);
+    font-size: 3em;
+}
+
+#connectOptionsWrapper {
+    bottom: 0;
+    width: 25em;
+    height: 11em;
+    left: -10em;
+}
+
+.fieldComponent .inputField:focus, .passwordField .inputField:focus {
+    border: none;
+    outline: none;
+}
+
+#connectOptionsWrapper.opened {
+    left: 13em;
+}
+
+    #connectOptionsWrapper.opened .connectOptionsHeader .fa-chevron-right {
+        -moz-transform: rotateY(180deg);
+        -ms-transform: rotateY(180deg);
+        -o-transform: rotateY(180deg);
+        -webkit-transform: rotateY(180deg);
+        transform: rotateY(180deg);
+    }
+
+.invalidEmail .inputField {
+    background-color: rgba(255, 0, 0, 0.56);
+}
+
+
+.popupContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+}
+
+.passwordContainer {
+    width: 22em;
+    top: 42%;
+    border-radius: 2em;
+}
+
+.passwordField .inputField {
+    text-align: center;
+    z-index: 3;
+    box-shadow: 0 0 100px 25px #000;
+}
+
+.profilePhoto {
+    font-size: 5em;
+    color: rgba(255, 255, 255, 0.56);
+    background-color: rgb(48, 48, 49);
+    width: 1.25em;
+    box-shadow: 0 0 68px 3px #000;
+    height: 1.25em;
+    z-index: 1;
+    line-height: 1.25em;
+    border-radius: 1em;
+}
+.displayEmailDetails{
+    display: inline-block;
+    height: 2em;
+    width: 100%;
+    color: #fff;
+    font-size: 1.25em;
+}
+.profilePhotoWrapper .showUploadedIcon {
+    border-radius: 35px;
+}
