@@ -4,44 +4,44 @@
     // Define enroll controller
     var SolvePuzzuleController = function (constants, secretService) {
 
-        var guess = this;
+        var solve = this;
 
-        guess.hintDetails = {};
+        solve.hintDetails = {};
 
-        guess.showHideHint = function (currentStep) {
+        solve.showHideHint = function (currentStep) {
             var background = "url(";
 
-            if ((!guess.showHint && currentStep.hintDetails) || !guess.hintDetails.background) {
+            if ((!solve.showHint && currentStep.hintDetails) || !solve.hintDetails.background) {
 
                 if (currentStep.hintDetails.hintImageData) {
 
                     background = background.concat(currentStep.hintDetails.hintImageData, ")");
-                    guess.hintDetails.background = background;
-                    guess.showHint = true;
+                    solve.hintDetails.background = background;
+                    solve.showHint = true;
                 }
             } else  {
 
-                guess.hintDetails.background = undefined;
-                guess.showHint = false;
+                solve.hintDetails.background = undefined;
+                solve.showHint = false;
             }
         };
 
         // guess secret phrase
-        guess.guessPhrase = function (guessPhrase, message) {
+        solve.guessPhrase = function (guessPhrase, message) {
 
             // match all
             var encryptedGuess = secretService.encryptPhrase(guessPhrase);
 
-            guess.showHint = true;
-            guess.hintDetails.background = undefined;
+            solve.showHint = true;
+            solve.hintDetails.background = undefined;
 
 
             if (encryptedGuess.encodedPhrase === message.encodedPhrase) {
-                guess.bulbColor = "rgb(33, 136, 33)";
-                guess.thumbsClass = "fa-thumbs-up";
+                solve.bulbColor = "rgb(33, 136, 33)";
+                solve.thumbsClass = "fa-thumbs-up";
             } else {
-                guess.bulbColor = "rgb(181, 25, 25)";
-                guess.thumbsClass = "fa-thumbs-down";
+                solve.bulbColor = "rgb(181, 25, 25)";
+                solve.thumbsClass = "fa-thumbs-down";
             }
 
         };
