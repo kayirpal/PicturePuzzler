@@ -51,8 +51,8 @@
         id: 4,
         state: "dashboard.guess",
         stepClass: "savePassword",
-        primaryHeader: "Guess What",
-        headerClass: "fa-question-circle",
+        primaryHeader: "dif tor heh smusma",
+        headerClass: "fa-hand-spock-o",
         passStrengthClass: "",
         secondaryHeader: ""
     };

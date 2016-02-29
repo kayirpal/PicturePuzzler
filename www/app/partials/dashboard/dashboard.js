@@ -47,7 +47,7 @@
         //#endregion
 
         // remove puzzle
-        dashboard.removePuzzle = function (puzzleDetails) {
+        function removePuzzle(puzzleDetails) {
 
             var iconIndex = dashboard.icons.length;
 
@@ -68,7 +68,7 @@
             iconService.saveIcons(dashboard.icons);
 
             dashboard.hideUserActions();
-        };
+        }
 
         dashboard.solvePuzzle = function (icon) {
             
@@ -82,7 +82,13 @@
             dashboard.currentStep.hintDetails = icon.hintDetails;
 
             dashboard.currentStep.customStepActions = [{
-                performAction: deleteIcon,
+                performAction: removePuzzle,
+                actionClass: "color-light-redish fa-share-square-o"
+            }, {
+                performAction: removePuzzle,
+                actionClass: "color-greenish fa-random"
+            }, {
+                performAction: removePuzzle,
                 actionClass: "deleteIcon fa-trash-o"
             }];
 

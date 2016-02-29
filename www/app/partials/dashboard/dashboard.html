@@ -27,11 +27,11 @@
 
             <div class="currentStepActions">
                 <div class="nextStepWrapper center">
-                    <div class="customStepActions" ng-repeat="action in dashboard.currentStep.customStepActions">
-                        <span ng-class="'fa pointer '+action.actionClass" ng-click="action.performAction(dashboard.currentStep)"></span>
+                    <div class="homeButton fRight" ng-click="dashboard.hideUserActions()">
+                        <span class="fa pointer fa-home"></span>
                     </div>
-                    <div class="homeButton pointer" ng-click="dashboard.hideUserActions()">
-                        <span class="fa  fa-home"></span>
+                    <div class="customStepActions fRight" ng-repeat="action in dashboard.currentStep.customStepActions">
+                        <span ng-class="'fa pointer '+action.actionClass" ng-click="action.performAction(dashboard.currentStep)"></span>
                     </div>
                 </div>
             </div>
