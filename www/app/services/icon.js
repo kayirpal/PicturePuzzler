@@ -6,27 +6,27 @@
 
         // Get service pointer
         var service = this,
-            icons = [],
+            puzzles = [],
             key = constants.iconStorageKey;
 
-        // get icons
-        service.getIcons = function (iconId) {
+        // get puzzles
+        service.getPuzzle = function (puzzleId) {
 
             // get icon list if not present
-            if (!icons || !icons.length) {
-                icons = storage.get(key);
+            if (!puzzles || !puzzles.length) {
+                puzzles = storage.get(key);
             }
 
             // handle undefined result
-            icons = icons || [];
+            puzzles = puzzles || [];
 
             // if only one icon needed
-            if (iconId) {
-                return icons.filter(function (icon) { return icon.id === iconId; })[0];
+            if (puzzleId) {
+                return puzzles.filter(function (puzzle) { return puzzle.id === puzzleId; })[0];
             }
 
-            // else return all icons
-            return icons;
+            // else return all puzzles
+            return puzzles;
         };
 
         // save icon(s)
@@ -35,35 +35,35 @@
             if (typeof (iconList) === "object") {
 
                 // add to icon list
-                icons.push(iconList);
+                puzzles.push(iconList);
 
             } else if (iconList && iconList.length) {
 
                 // replace whole list
-                icons = iconList;
+                puzzles = iconList;
             } else {
                 return;
             }
 
             // save updated icon list
-            return storage.set(icons, key);
+            return storage.set(puzzles, key);
         };
         
         // delete icon
-        service.deleteIcon = function (iconId) {
+        service.deleteIcon = function (puzzleId) {
             
             // handle undefined result
-            icons = icons || [];
+            puzzles = puzzles || [];
 
             // if only one icon needed
-            if (iconId) {
-                icons = icons.filter(function (icon) { return icon.id !== iconId; });
+            if (puzzleId) {
+                puzzles = puzzles.filter(function (puzzle) { return puzzle.id !== puzzleId; });
             } else {
                 return;
             }
 
             // save and return updated list
-            return storage.set(icons, key);
+            return storage.set(puzzles, key);
         };
 
         // Return service pointer

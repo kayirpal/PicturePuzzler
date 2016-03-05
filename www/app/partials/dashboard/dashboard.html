@@ -2,7 +2,7 @@
 
     <section class="iconsWrapper">
 
-        <div class="iconWrapper" ng-repeat="icon in dashboard.icons track by $index">
+        <div class="iconWrapper" ng-repeat="icon in dashboard.puzzles track by $index">
             <article class="icon" ng-click="dashboard.trySolvingPuzzle(icon)" ng-style="{backgroundImage: icon.iconData}"></article>
         </div>
 

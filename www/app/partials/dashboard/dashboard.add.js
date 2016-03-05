@@ -14,7 +14,7 @@
             add.selectedCreator = undefined;
 
             // remove added action button
-            currentStep.customStepActions =[];
+            currentStep.customStepActions = [];
         }
 
         // set puzzle creator
@@ -25,12 +25,16 @@
 
             var puzzleDetails = {};
 
+            // image dimensions
+            puzzleDetails.height = creatorOption.height || 300;
+            puzzleDetails.width = creatorOption.width || 400;
+
             // puzzle image
             puzzleDetails.imageData = creatorOption.uploadedIconUrl || creatorOption.rawFileUrl;
 
             // puzzle icon
-            puzzleDetails.iconData = "url(".concat(creatorOption.iconUrl || creatorOption.rawFileUrl);
-                       
+            puzzleDetails.iconData = "url(".concat(creatorOption.iconUrl || creatorOption.rawFileUrl, ")");
+
             // call step complete callback
             if (currentStep.onComplete && typeof (currentStep.onComplete) === "function") {
                 currentStep.onComplete(puzzleDetails);
@@ -45,12 +49,12 @@
 
             // set hint creator
             add.selectedCreator = creatorOption;
-            
+
             // append action
-            currentStep.customStepActions =[{
+            currentStep.customStepActions = [{
                 performAction: resetPuzzleCreator,
                 actionClass: "fa-times discardChanges"
-            },{
+            }, {
                 performAction: selectPuzzleCreator,
                 actionClass: "fa-check saveChanges"
             }];

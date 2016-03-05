@@ -6,7 +6,7 @@
 
         var dashboard = this;
         
-        dashboard.icons = [];
+        dashboard.puzzles = [];
 
         //Common methods
 
@@ -22,7 +22,11 @@
                 puzzleDetails.id = pService.generateGUID();
 
                 // add to list
-                dashboard.icons.push(puzzleDetails)
+                dashboard.puzzles.push(puzzleDetails);
+
+                // save icon
+                iconService.saveIcons(puzzleDetails);
+
             }
 
             // close creator window
@@ -49,23 +53,23 @@
         // remove puzzle
         function removePuzzle(puzzleDetails) {
 
-            var iconIndex = dashboard.icons.length;
+            var iconIndex = dashboard.puzzles.length;
 
             if (puzzleDetails && iconIndex) {
 
                 while (iconIndex >= 0) {
                     iconIndex -= 1;
-                    var icon = dashboard.icons[iconIndex];
+                    var icon = dashboard.puzzles[iconIndex];
 
                     if (icon.iconId === puzzleDetails.iconId) {
-                        dashboard.icons.splice(iconIndex, 1);
+                        dashboard.puzzles.splice(iconIndex, 1);
                         break;
                     }
                 }
             }
 
             // update saved list
-            iconService.saveIcons(dashboard.icons);
+            iconService.saveIcons(dashboard.puzzles);
 
             dashboard.hideUserActions();
         }
@@ -75,9 +79,6 @@
             
             // set current step
             dashboard.currentStep = constants.solvePuzzleStep;
-
-            // set  puzzle to solve
-            dashboard.currentStep.puzzle = puzzle;
 
             // show available actions
             dashboard.currentStep.customStepActions = [{
@@ -92,7 +93,9 @@
             }];
 
             // open solve puzzle page
-            state.go("dashboard.solve");
+            state.go("dashboard.solve", {
+                puzzleId: puzzle.id
+            });
         };
 
         // init
@@ -100,15 +103,17 @@
             var currentState = state.current || {};
 
             // get saved icons
-            var savedIcons = iconService.getIcons();
+            var savedPuzzles = iconService.getPuzzle();
 
-            if (savedIcons && savedIcons.length) {
-                dashboard.icons = savedIcons;
+            if (savedPuzzles && savedPuzzles.length) {
+                dashboard.puzzles = savedPuzzles;
             }
 
             if (currentState.name && currentState.name === "dashboard.add") {
                 // add new icon
                 dashboard.startPuzzleCreation();
+            } else if (currentState.name && currentState.name === "dashboard.solve") {
+                state.go("dashboard");
             }
         }());
 

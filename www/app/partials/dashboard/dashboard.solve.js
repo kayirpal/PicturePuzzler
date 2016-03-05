@@ -2,9 +2,15 @@
     "use strict";
 
     // Define enroll controller
-    var SolvePuzzuleController = function (scope, stateParams, constants, secretService, iconService) {
+    var SolvePuzzuleController = function (state, stateParams, constants, secretService, iconService) {
 
         var solve = this;
+
+        var puzzleSettings = {
+            width: 400,
+            height: 300,
+            blockLength: 100
+        };
 
         solve.hintDetails = {};
 
@@ -21,7 +27,7 @@
                     solve.hintDetails.background = background;
                     solve.showHint = true;
                 }
-            } else  {
+            } else {
 
                 solve.hintDetails.background = undefined;
                 solve.showHint = false;
@@ -83,7 +89,7 @@
                 });
             }
         };
-                
+
         // reset positions of the pieces
         solve.resetPieces = function (picturePieces) {
 
@@ -106,19 +112,84 @@
         (function () {
 
             // get puzzle id from state parameters 
-            var puzzleId = stateParams.puzzleId;
-
+            var puzzleId = stateParams.puzzleId,
+                styleFormat = ".puzzlePiece {background-image: url('|image|');width: |width|px; height: |height|px;}";//.puzzlePiece{background-image: |image|;width: |width|px;height:|height|px;}";
+            
             // get puzzle from service
             solve.puzzleDetails = iconService.getPuzzle(puzzleId);
 
+            // create puzzle pieces
+            var xPos = 0,
+                width = solve.puzzleDetails.width,
+                height = solve.puzzleDetails.height,
+                blockLength = puzzleSettings.blockLength,
+                yPos;
+
+            var sheet = document.createElement('style');
+
+            // add background image property
+            //var puzzlePieceImage = document.createElement("style");
+
+            // insert background image
+            styleFormat = styleFormat.replace("|image|", solve.puzzleDetails.imageData);
+
+            // insert width and height
+            styleFormat = styleFormat.replace("|width|", blockLength);
+            styleFormat = styleFormat.replace("|height|", blockLength);
+
+            //// update style
+            //puzzlePieceImage.innerHTML = puzzlePieceImage;
+            //document.body.appendChild(puzzlePieceImage);
+
+            sheet.innerHTML = styleFormat;
+            document.body.appendChild(sheet);
+
+            // create width/blockLength columns
+            while (width > xPos) {
+
+                // reset y position for each column
+                yPos = 0;
+
+                // create height/blockLength rows
+                while (height > yPos) {
+
+                    (function () {
+
+                        // initialize piece
+                        var puzzlePiece = {
+                            id: solve.picturePieces.length,
+                            style: {}
+                        };
+
+                        // set piece position
+                        puzzlePiece.style.top = yPos + "px";
+                        puzzlePiece.style.left = xPos + "px";
+
+                        // set background image info
+                        puzzlePiece.style.backgroundPositionY = ((-1) * yPos) + "px";
+                        puzzlePiece.style.backgroundPositionX = ((-1) * xPos) + "px";
+
+                        // add to list of pieces
+                        solve.picturePieces.push(puzzlePiece);
+                    }());
+
+                    // next row
+                    yPos += blockLength;
+                }
+
+                // next column
+                xPos += blockLength;
+            }
+
+            // initial shuffle 
+           // solve.shufflePieces(solve.picturePieces);
 
         }());
-
     };
 
     // Define enroll module
     angular.module("puzzler.dashboard")
 
     // Enroll controller
-    .controller("SolvePuzzuleController", ["$scope", "$stateParams", "constants", "secretservice", "iconservice", SolvePuzzuleController]);
+    .controller("SolvePuzzuleController", ["$state", "$stateParams", "constants", "secretservice", "iconservice", SolvePuzzuleController]);
 }());
