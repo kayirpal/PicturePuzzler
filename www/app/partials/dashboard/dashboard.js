@@ -10,40 +10,40 @@
 
         //Common methods
 
+
+        //# region create icon 
+
         // add new puzzle
         function createPuzzle(puzzleDetails) {
 
-            // get puzzle id
-            var id = pService.generateGUID();
+            if (puzzleDetails.imageData && puzzleDetails.iconData) {
 
-            // add to list
-            dashboard.icons.push({
-                iconId: id,
-                message: puzzleDetails.message,
-                iconDetails: puzzleDetails.iconDetails
-            });
+                // get puzzle id
+                puzzleDetails.id = pService.generateGUID();
+
+                // add to list
+                dashboard.icons.push(puzzleDetails)
+            }
 
             // close creator window
             dashboard.hideUserActions();
-        };
-        
+        }
+
         // open add new puzzle window
         dashboard.startPuzzleCreation = function () {
+
             dashboard.currentStep = constants.createPuzzleStep;
 
             dashboard.currentStep.onComplete = createPuzzle;
 
             state.go("dashboard.add");
         };
-        
+
         // hide new puzzle window
         dashboard.hideUserActions = function () {
-            dashboard.currentStep = undefined;            
+            dashboard.currentStep = undefined;
             state.go("dashboard");
         };
-
-        //# region create icon 
-
         //#endregion
 
         // remove puzzle
@@ -70,20 +70,19 @@
             dashboard.hideUserActions();
         }
 
-        dashboard.solvePuzzle = function (icon) {
+        // open solve puzzle window
+        dashboard.trySolvingPuzzle = function (puzzle) {
             
             // set current step
             dashboard.currentStep = constants.solvePuzzleStep;
 
-            // set secret word
-            dashboard.currentStep.message = icon.message;
+            // set  puzzle to solve
+            dashboard.currentStep.puzzle = puzzle;
 
-            // set hint details
-            dashboard.currentStep.hintDetails = icon.hintDetails;
-
+            // show available actions
             dashboard.currentStep.customStepActions = [{
                 performAction: removePuzzle,
-                actionClass: "color-light-redish fa-share-square-o"
+                actionClass: "color-yellowish fa-repeat"
             }, {
                 performAction: removePuzzle,
                 actionClass: "color-greenish fa-random"

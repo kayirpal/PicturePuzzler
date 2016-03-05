@@ -8,6 +8,7 @@
             scope: {
                 extractIcon: "="
             },
+
             link: function (scope, element, attr) {
 
                 scope.extractIcon = scope.extractIcon || {};
@@ -46,6 +47,7 @@
                 imageObj.onload = function () {
                     context.drawImage(imageObj, 0, 0, width, height);
                     scope.extractIcon.uploadedIconUrl = canvas.toDataURL("image/png");
+                    scope.extractIcon.iconUrl = canvas.toDataURL("image/png", 0.25);                    
                 };
             }
         };

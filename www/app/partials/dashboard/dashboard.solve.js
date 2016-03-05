@@ -2,11 +2,13 @@
     "use strict";
 
     // Define enroll controller
-    var SolvePuzzuleController = function (constants, secretService) {
+    var SolvePuzzuleController = function (scope, stateParams, constants, secretService, iconService) {
 
         var solve = this;
 
         solve.hintDetails = {};
+
+        solve.picturePieces = [];
 
         solve.showHideHint = function (currentStep) {
             var background = "url(";
@@ -46,11 +48,77 @@
 
         };
 
+        // shuffle pieces
+        solve.shufflePieces = function (picturePieces) {
+
+            if (picturePieces && picturePieces.length) {
+
+                var cellCount = picturePieces.length;
+
+                picturePieces.forEach(function (picturePiece, index) {
+
+                    var randonIndex = index,
+                        targetPiece,
+                        temp,
+                        tries = 5;
+
+                    while (index === randonIndex && tries) {
+                        randonIndex = parseInt(Math.random() * cellCount, 10);
+                        tries -= 1;
+                    }
+
+                    targetPiece = picturePieces[randonIndex];
+
+                    // swap positions
+
+                    // swap x coordinate
+                    temp = picturePiece.style.left;
+                    picturePiece.style.left = targetPiece.style.left;
+                    targetPiece.style.left = temp;
+
+                    // swap y coordinate
+                    temp = picturePiece.style.top;
+                    picturePiece.style.top = targetPiece.style.top;
+                    targetPiece.style.top = temp;
+                });
+            }
+        };
+                
+        // reset positions of the pieces
+        solve.resetPieces = function (picturePieces) {
+
+            // if any pieces exists
+            if (picturePieces && picturePieces.length) {
+
+                picturePieces.forEach(function (picturePiece) {
+
+                    // reset x coordinate
+                    picturePiece.style.left = picturePiece.style.backgroundPositionX.replace("-", "");
+
+                    // swap y coordinate
+                    picturePiece.style.top = picturePiece.style.backgroundPositionY.replace("-", "");
+
+                });
+            }
+        };
+
+        //init
+        (function () {
+
+            // get puzzle id from state parameters 
+            var puzzleId = stateParams.puzzleId;
+
+            // get puzzle from service
+            solve.puzzleDetails = iconService.getPuzzle(puzzleId);
+
+
+        }());
+
     };
 
     // Define enroll module
     angular.module("puzzler.dashboard")
 
     // Enroll controller
-    .controller("SolvePuzzuleController", ["constants", "secretservice", SolvePuzzuleController]);
+    .controller("SolvePuzzuleController", ["$scope", "$stateParams", "constants", "secretservice", "iconservice", SolvePuzzuleController]);
 }());

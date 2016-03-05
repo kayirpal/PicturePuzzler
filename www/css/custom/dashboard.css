@@ -184,7 +184,10 @@
     font-size: 45px;
     line-height: 90px;
     cursor: pointer;
+    background-repeat: no-repeat;
     display: inline-block;
+    background-position: 0;
+    background-size: 100% 100%;
 }
 
 .createTextIconContainer .iconWrapper .icon {

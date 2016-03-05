@@ -23,12 +23,13 @@
             // do post select 
             var creatorOption = add.selectedCreator;
 
-            var puzzleDetails = {
-                iconDetails: {}
-            };
+            var puzzleDetails = {};
 
-            // puzzle message
-            puzzleDetails.message = creatorOption.uploadedIconUrl || creatorOption.rawFileUrl;
+            // puzzle image
+            puzzleDetails.imageData = creatorOption.uploadedIconUrl || creatorOption.rawFileUrl;
+
+            // puzzle icon
+            puzzleDetails.iconData = "url(".concat(creatorOption.iconUrl || creatorOption.rawFileUrl);
                        
             // call step complete callback
             if (currentStep.onComplete && typeof (currentStep.onComplete) === "function") {

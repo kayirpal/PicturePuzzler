@@ -12,7 +12,7 @@
 
             // guess secret
         }).state("dashboard.solve", {
-            url: "/solve",
+            url: "/solve/:puzzleId",
             controller: "SolvePuzzuleController as solve",
             templateUrl: "app/partials/dashboard/dashboard.solve.html"
         });

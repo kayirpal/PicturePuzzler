@@ -1,0 +1,16 @@
+﻿{
+  "version": "2.2.0",
+  "ignore": [],
+  "options": {
+    "multivar": true,
+    "this": true,
+    "white": true
+  },
+  "globalVariables": [
+    "angular",
+    "window",
+    "$",
+    "document",
+    "console"
+  ]
+}

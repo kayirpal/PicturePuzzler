@@ -6,20 +6,64 @@
 
         // Get service pointer
         var service = this,
+            icons = [],
             key = constants.iconStorageKey;
 
         // get icons
-        service.getIcons = function () {
+        service.getIcons = function (iconId) {
 
-            // get icon list 
-            return storage.get(key);
+            // get icon list if not present
+            if (!icons || !icons.length) {
+                icons = storage.get(key);
+            }
+
+            // handle undefined result
+            icons = icons || [];
+
+            // if only one icon needed
+            if (iconId) {
+                return icons.filter(function (icon) { return icon.id === iconId; })[0];
+            }
+
+            // else return all icons
+            return icons;
         };
 
-        // save icon list
+        // save icon(s)
         service.saveIcons = function (iconList) {
 
-            // set icon list without encryption (dev)
-            return storage.set(iconList, key);
+            if (typeof (iconList) === "object") {
+
+                // add to icon list
+                icons.push(iconList);
+
+            } else if (iconList && iconList.length) {
+
+                // replace whole list
+                icons = iconList;
+            } else {
+                return;
+            }
+
+            // save updated icon list
+            return storage.set(icons, key);
+        };
+        
+        // delete icon
+        service.deleteIcon = function (iconId) {
+            
+            // handle undefined result
+            icons = icons || [];
+
+            // if only one icon needed
+            if (iconId) {
+                icons = icons.filter(function (icon) { return icon.id !== iconId; });
+            } else {
+                return;
+            }
+
+            // save and return updated list
+            return storage.set(icons, key);
         };
 
         // Return service pointer
