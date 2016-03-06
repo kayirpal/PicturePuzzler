@@ -38,6 +38,8 @@
 
             dashboard.currentStep = constants.createPuzzleStep;
 
+            dashboard.currentStep.customStepActions = [];
+
             dashboard.currentStep.onComplete = createPuzzle;
 
             state.go("dashboard.add");
@@ -51,17 +53,17 @@
         //#endregion
 
         // remove puzzle
-        function removePuzzle(puzzleDetails) {
+        function removePuzzle(currentStep) {
 
             var iconIndex = dashboard.puzzles.length;
 
-            if (puzzleDetails && iconIndex) {
+            if (currentStep && iconIndex) {
 
                 while (iconIndex >= 0) {
                     iconIndex -= 1;
-                    var icon = dashboard.puzzles[iconIndex];
+                    var puzzle = dashboard.puzzles[iconIndex];
 
-                    if (icon.iconId === puzzleDetails.iconId) {
+                    if (puzzle.id === currentStep.id) {
                         dashboard.puzzles.splice(iconIndex, 1);
                         break;
                     }
@@ -69,7 +71,7 @@
             }
 
             // update saved list
-            iconService.saveIcons(dashboard.puzzles);
+            iconService.deleteIcon(currentStep.id);
 
             dashboard.hideUserActions();
         }
@@ -80,14 +82,11 @@
             // set current step
             dashboard.currentStep = constants.solvePuzzleStep;
 
+            // set puzzle id
+            dashboard.currentStep.id = puzzle.id;
+
             // show available actions
             dashboard.currentStep.customStepActions = [{
-                performAction: removePuzzle,
-                actionClass: "color-yellowish fa-repeat"
-            }, {
-                performAction: removePuzzle,
-                actionClass: "color-greenish fa-random"
-            }, {
                 performAction: removePuzzle,
                 actionClass: "deleteIcon fa-trash-o"
             }];
@@ -106,7 +105,7 @@
             var savedPuzzles = iconService.getPuzzle();
 
             if (savedPuzzles && savedPuzzles.length) {
-                dashboard.puzzles = savedPuzzles;
+                dashboard.puzzles = angular.copy(savedPuzzles);
             }
 
             if (currentState.name && currentState.name === "dashboard.add") {

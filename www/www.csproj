@@ -71,6 +71,7 @@
     <Content Include="app\app.module.js" />
     <Content Include="app\directives\adjustable.js" />
     <Content Include="app\directives\animationEnd.js" />
+    <Content Include="app\directives\picturePuzzle.js" />
     <Content Include="app\directives\captureImage.js" />
     <Content Include="app\directives\directive.module.js" />
     <Content Include="app\directives\extractIcon.js" />

@@ -1,8 +1,4 @@
 <section class="puzzleSolverWrapper  currentStepContainer">
-    <header></header>
-    <div class="puzzleSolverContainer center" ng-style="{width: solve.puzzleDetails.width+'px', height: solve.puzzleDetails.height+'px'}">
-        <article draggable="true" class="puzzlePiece" ng-repeat="puzzlePiece in solve.picturePieces" ng-style="puzzlePiece.style">
-
-        </article>
-    </div>
+    <header ng-init="solve.createPuzzlePieces(dashboard.currentStep)"></header>
+    <div class="puzzleSolverContainer center" picture-puzzle="solve" ng-style="{width: solve.puzzleDetails.width+'px', height: solve.puzzleDetails.height+'px'}"></div>
 </section>

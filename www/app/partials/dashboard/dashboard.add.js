@@ -26,8 +26,8 @@
             var puzzleDetails = {};
 
             // image dimensions
-            puzzleDetails.height = creatorOption.height || 300;
-            puzzleDetails.width = creatorOption.width || 400;
+            puzzleDetails.height = creatorOption.height || 350;
+            puzzleDetails.width = creatorOption.width || 350;
 
             // puzzle image
             puzzleDetails.imageData = creatorOption.uploadedIconUrl || creatorOption.rawFileUrl;
@@ -48,7 +48,7 @@
         add.selectPuzzleCreator = function (currentStep, creatorOption) {
 
             // set hint creator
-            add.selectedCreator = creatorOption;
+            add.selectedCreator = angular.copy(creatorOption);
 
             // append action
             currentStep.customStepActions = [{

@@ -32,7 +32,7 @@
                         scaleRatio = maxHeight / height;
                     }
 
-                    scaleRatio *= 0.9;
+                    scaleRatio *= 0.8;
 
                     width *= scaleRatio;
                     height *= scaleRatio;
