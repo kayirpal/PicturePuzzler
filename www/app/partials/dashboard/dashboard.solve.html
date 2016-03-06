@@ -1,6 +1,4 @@
 <section class="puzzleSolverWrapper  currentStepContainer">
-    <header></header>
-    <div class="puzzleSolverContainer center">
-
-    </div>
+    <header ng-init="solve.createPuzzlePieces(dashboard.currentStep)"></header>
+    <div class="puzzleSolverContainer center" picture-puzzle="solve" ng-style="{width: solve.puzzleDetails.width+'px', height: solve.puzzleDetails.height+'px'}"></div>
 </section>

@@ -8,6 +8,7 @@
             scope: {
                 extractIcon: "="
             },
+
             link: function (scope, element, attr) {
 
                 scope.extractIcon = scope.extractIcon || {};
@@ -18,21 +19,26 @@
                 var width = canvas.width,
                     scaleRatio = 1,
                     height = canvas.height,
-                    widthDiff = window.innerWidth - width,
-                    heightDiff = window.innerHeight - height;
+                    maxWidth = window.innerWidth - (window.innerWidth % 100),
+                    maxHeight = window.innerHeight - (window.innerHeight % 100),
+                    widthDiff = maxWidth - width,
+                    heightDiff = maxHeight - height;
 
                 if (!attr.noChanges) {
 
                     if (heightDiff > widthDiff) {
-                        scaleRatio = window.innerWidth / width;
+                        scaleRatio = maxWidth / width;
                     } else {
-                        scaleRatio = window.innerHeight / height;
+                        scaleRatio = maxHeight / height;
                     }
 
-                    scaleRatio *= 0.75;
+                    scaleRatio *= 0.8;
 
                     width *= scaleRatio;
                     height *= scaleRatio;
+
+                    width = width - (width % 100);
+                    height = height - (height % 100);
 
                     canvas.width = width;
                     canvas.height = height;
@@ -45,7 +51,10 @@
                 imageObj.src = scope.extractIcon.rawFileUrl;
                 imageObj.onload = function () {
                     context.drawImage(imageObj, 0, 0, width, height);
+                    scope.extractIcon.width = width;
+                    scope.extractIcon.height = height;
                     scope.extractIcon.uploadedIconUrl = canvas.toDataURL("image/png");
+                    scope.extractIcon.iconUrl = canvas.toDataURL("image/png", 0.25);                    
                 };
             }
         };

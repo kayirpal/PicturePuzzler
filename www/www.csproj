@@ -71,6 +71,7 @@
     <Content Include="app\app.module.js" />
     <Content Include="app\directives\adjustable.js" />
     <Content Include="app\directives\animationEnd.js" />
+    <Content Include="app\directives\picturePuzzle.js" />
     <Content Include="app\directives\captureImage.js" />
     <Content Include="app\directives\directive.module.js" />
     <Content Include="app\directives\extractIcon.js" />
@@ -153,6 +154,7 @@
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="scripts\hammer.min.js.map" />
+    <Content Include="JSLintNet.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

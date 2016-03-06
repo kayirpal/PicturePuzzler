@@ -23,6 +23,8 @@
 </head>
 <body ng-app="puzzler" ng-controller="mainEngine as app">
 
+    <style id="puzzlePieceImage" class="puzzlePieceImage"></style>
+
     <header id="appHeader" class="">
         <aside class="userInfoWrapper ng-hide" ng-show="true">
             <div class="userNameDisplay" hm-tap="app.showHideUserActions()">
@@ -72,8 +74,9 @@
     <script src="app/directives/fileUpload.js"></script>
     <script src="app/directives/adjustable.js"></script>
     <script src="app/directives/captureImage.js"></script>
-    <!--App Modules-->
+    <script src="app/directives/picturePuzzle.js"></script>
 
+    <!--App Modules-->
     <!--Dashboard module-->
     <script src="app/partials/dashboard/dashboard.module.js"></script>
     <script src="app/partials/dashboard/dashboard.config.js"></script>

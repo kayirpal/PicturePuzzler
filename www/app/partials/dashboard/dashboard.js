@@ -6,94 +6,95 @@
 
         var dashboard = this;
         
-        dashboard.icons = [];
+        dashboard.puzzles = [];
 
         //Common methods
+
+
+        //# region create icon 
 
         // add new puzzle
         function createPuzzle(puzzleDetails) {
 
-            // get puzzle id
-            var id = pService.generateGUID();
+            if (puzzleDetails.imageData && puzzleDetails.iconData) {
 
-            // add to list
-            dashboard.icons.push({
-                iconId: id,
-                message: puzzleDetails.message,
-                iconDetails: puzzleDetails.iconDetails
-            });
+                // get puzzle id
+                puzzleDetails.id = pService.generateGUID();
+
+                // add to list
+                dashboard.puzzles.push(puzzleDetails);
+
+                // save icon
+                iconService.saveIcons(puzzleDetails);
+
+            }
 
             // close creator window
             dashboard.hideUserActions();
-        };
-        
+        }
+
         // open add new puzzle window
         dashboard.startPuzzleCreation = function () {
+
             dashboard.currentStep = constants.createPuzzleStep;
+
+            dashboard.currentStep.customStepActions = [];
 
             dashboard.currentStep.onComplete = createPuzzle;
 
             state.go("dashboard.add");
         };
-        
+
         // hide new puzzle window
         dashboard.hideUserActions = function () {
-            dashboard.currentStep = undefined;            
+            dashboard.currentStep = undefined;
             state.go("dashboard");
         };
-
-        //# region create icon 
-
         //#endregion
 
         // remove puzzle
-        function removePuzzle(puzzleDetails) {
+        function removePuzzle(currentStep) {
 
-            var iconIndex = dashboard.icons.length;
+            var iconIndex = dashboard.puzzles.length;
 
-            if (puzzleDetails && iconIndex) {
+            if (currentStep && iconIndex) {
 
                 while (iconIndex >= 0) {
                     iconIndex -= 1;
-                    var icon = dashboard.icons[iconIndex];
+                    var puzzle = dashboard.puzzles[iconIndex];
 
-                    if (icon.iconId === puzzleDetails.iconId) {
-                        dashboard.icons.splice(iconIndex, 1);
+                    if (puzzle.id === currentStep.id) {
+                        dashboard.puzzles.splice(iconIndex, 1);
                         break;
                     }
                 }
             }
 
             // update saved list
-            iconService.saveIcons(dashboard.icons);
+            iconService.deleteIcon(currentStep.id);
 
             dashboard.hideUserActions();
         }
 
-        dashboard.solvePuzzle = function (icon) {
+        // open solve puzzle window
+        dashboard.trySolvingPuzzle = function (puzzle) {
             
             // set current step
             dashboard.currentStep = constants.solvePuzzleStep;
 
-            // set secret word
-            dashboard.currentStep.message = icon.message;
+            // set puzzle id
+            dashboard.currentStep.id = puzzle.id;
 
-            // set hint details
-            dashboard.currentStep.hintDetails = icon.hintDetails;
-
+            // show available actions
             dashboard.currentStep.customStepActions = [{
-                performAction: removePuzzle,
-                actionClass: "color-light-redish fa-share-square-o"
-            }, {
-                performAction: removePuzzle,
-                actionClass: "color-greenish fa-random"
-            }, {
                 performAction: removePuzzle,
                 actionClass: "deleteIcon fa-trash-o"
             }];
 
             // open solve puzzle page
-            state.go("dashboard.solve");
+            state.go("dashboard.solve", {
+                puzzleId: puzzle.id
+            });
         };
 
         // init
@@ -101,15 +102,17 @@
             var currentState = state.current || {};
 
             // get saved icons
-            var savedIcons = iconService.getIcons();
+            var savedPuzzles = iconService.getPuzzle();
 
-            if (savedIcons && savedIcons.length) {
-                dashboard.icons = savedIcons;
+            if (savedPuzzles && savedPuzzles.length) {
+                dashboard.puzzles = angular.copy(savedPuzzles);
             }
 
             if (currentState.name && currentState.name === "dashboard.add") {
                 // add new icon
                 dashboard.startPuzzleCreation();
+            } else if (currentState.name && currentState.name === "dashboard.solve") {
+                state.go("dashboard");
             }
         }());
 

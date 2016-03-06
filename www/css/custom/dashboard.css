@@ -177,14 +177,16 @@
     width: 90px;
     border-radius: 10px;
     background-color: rgba(0,0,0,0.75);
-    background-size: contain;
     height: 90px;
     box-shadow: 1px 1px 10px 1px #000;
     text-align: center;
     font-size: 45px;
     line-height: 90px;
     cursor: pointer;
+    background-repeat: no-repeat;
     display: inline-block;
+    background-position: 0;
+    background-size: 100% 100%;
 }
 
 .createTextIconContainer .iconWrapper .icon {
@@ -269,7 +271,7 @@
 
 .browseImageIcon, .snapImageIcon, .displayHintWrapper {
     min-height: 250px;
-    min-width: 450px;
+    min-width: 350px;
     display: inline-block;
     margin: 0 auto;
     padding: 35px;
@@ -1112,7 +1114,34 @@
 
 .puzzleSolverContainer {
     display: inline-block;
-    min-width: 90%;
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
     border: 2px solid rgba(135, 142, 75, 0.81);
-    min-height: 70%;
+}
+
+.highLightBorder {
+    border: 3px solid #0a0;
+    opacity: 0.5;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.gameOn{
+    box-shadow: rgb(233, 217, 41) 0 0 50px 5px;
+}
+
+.solvedPuzzle{
+    box-shadow: rgb(39, 224, 39) 0 0 50px 5px;
+}
+
+.puzzlePiece {
+    position: absolute;
+    top: 0;
+    left: 0;
+    -moz-transition: top 0.35s linear, left 0.35s linear;
+    -o-transition: top 0.35s linear, left 0.35s linear;
+    -webkit-transition: top 0.35s linear, left 0.35s linear;
+    transition: top 0.35s linear, left 0.35s linear;
 }
