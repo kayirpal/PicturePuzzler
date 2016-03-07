@@ -28,15 +28,6 @@
             colorPallet: ["rgb(132, 24, 59)", "rgb(101, 34, 34)", "#234", "rgb(14, 97, 90)", "rgb(44, 115, 49)", "rgb(128, 112, 36)"],
             style: {}
         }, {
-            title: "Font color",
-            selectedColorPallet: "#ccc",
-            onChange: setFontColor,
-            colorPallet: ["rgb(226, 64, 60)", "rgb(228, 192, 131)", "#ccc", "rgb(136, 199, 140)", "rgb(247, 130, 167)", "rgb(214, 197, 65)"],
-            style: {
-                color: "#fff",
-                left: "25px"
-            }
-        }, {
             title: "Icon color",
             selectedColorPallet: "rgb(9, 13, 17)",
             onChange: setIconColor,

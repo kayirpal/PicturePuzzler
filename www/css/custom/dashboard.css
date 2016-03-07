@@ -277,7 +277,6 @@
     padding: 35px;
     border-radius: 50px;
     position: relative;
-    background: radial-gradient(rgba(34, 68, 102, 1),rgba(17, 34, 51, 0.86));
     line-height: 160px;
 }
 
@@ -693,7 +692,7 @@
     display: block;
     width: 100%;
     padding: 0 1em;
-    height: 80%;
+    height: 75%;
 }
 
 .createTextIconContainer {
@@ -1069,7 +1068,7 @@
 
 .stepDescription {
     display: block;
-    height: 10%;
+    height: 1%;
     min-height: 5em;
     padding: 1em;
 }
@@ -1118,23 +1117,76 @@
     -webkit-box-sizing: content-box;
     box-sizing: content-box;
     border: 2px solid rgba(135, 142, 75, 0.81);
+    border-radius: 2em;
+    overflow: hidden;
 }
 
 .highLightBorder {
-    border: 3px solid #0a0;
     opacity: 0.5;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
 
-.gameOn{
-    box-shadow: rgb(233, 217, 41) 0 0 50px 5px;
+.notInItsPlace {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 1px solid #b91616;
 }
 
-.solvedPuzzle{
+.gameOn {
+    box-shadow: rgb(233, 217, 41) 0 0 50px 5px;
+}
+.puzzleNotification {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.62);
+    color: rgb(78, 208, 82);
+    top: 0;
+    left: 0;
+    display: none;
+    line-height: 5em;
+    font-size: 5em;
+    -moz-animation: hideIn5 0.5s ease;
+    -o-animation: hideIn5 0.5s ease;
+    -webkit-animation: hideIn5 0.5s ease;
+    animation: hideIn5 2s ease;
+    opacity: 0;
+}
+
+@-moz-keyframes hideIn5{
+    0%{opacity: 1; z-index: 10;}
+    100%{opacity: 0; z-index: 1;}
+}
+
+@-webkit-keyframes hideIn5{
+    0%{opacity: 1; z-index: 10;}
+    100%{opacity: 0; z-index: 1;}
+}
+
+@keyframes hideIn5{
+    0%{opacity: 1; z-index: 10;}
+    100%{opacity: 0; z-index: 1;}
+}
+.solvedPuzzle {
     box-shadow: rgb(39, 224, 39) 0 0 50px 5px;
 }
+
+.puzzleSolvedMessage, .gameOnMessage{
+    display: none;
+}
+.gameOn .puzzleNotification, .solvedPuzzle .puzzleNotification, .gameOn .gameOnMessage, .solvedPuzzle .puzzleSolvedMessage {
+    display: block;
+}
+
+.solvedPuzzle .puzzleNotification{
+    z-index: 10;
+    opacity: 1;
+}
+
+
 
 .puzzlePiece {
     position: absolute;

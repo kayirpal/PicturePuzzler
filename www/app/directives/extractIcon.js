@@ -19,8 +19,8 @@
                 var width = canvas.width,
                     scaleRatio = 1,
                     height = canvas.height,
-                    maxWidth = window.innerWidth - (window.innerWidth % 100),
-                    maxHeight = window.innerHeight - (window.innerHeight % 100),
+                    maxWidth = window.innerWidth - (window.innerWidth % 80),
+                    maxHeight = window.innerHeight - (window.innerHeight % 80),
                     widthDiff = maxWidth - width,
                     heightDiff = maxHeight - height;
 
@@ -37,8 +37,8 @@
                     width *= scaleRatio;
                     height *= scaleRatio;
 
-                    width = width - (width % 100);
-                    height = height - (height % 100);
+                    width = width - (width % 80);
+                    height = height - (height % 80);
 
                     canvas.width = width;
                     canvas.height = height;
@@ -55,6 +55,32 @@
                     scope.extractIcon.height = height;
                     scope.extractIcon.uploadedIconUrl = canvas.toDataURL("image/png");
                     scope.extractIcon.iconUrl = canvas.toDataURL("image/png", 0.25);                    
+                };
+
+
+                scope.extractIcon.rotate = function (degree) {
+
+                    context.translate(width / 2, height/2);
+                    context.rotate(degree * Math.PI / 180);
+                    context.translate(-width / 2, -height/2);
+                    var newImageUrl = canvas.toDataURL("image/png");
+                    var imageObj2 = new Image();
+                    imageObj2.height = height;
+                    imageObj2.width = width;
+                    imageObj2.src = newImageUrl;
+                    imageObj2.onload = function () {
+                        context.drawImage(imageObj2, 0, 0, width, height);
+                        scope.extractIcon.width = width;
+                        scope.extractIcon.height = height;
+                        scope.extractIcon.uploadedIconUrl = canvas.toDataURL("image/png");
+                        scope.extractIcon.iconUrl = canvas.toDataURL("image/png", 1);
+
+                        context.translate(width / 2, height / 2);
+                        context.rotate(-degree * Math.PI / 180);
+                        context.translate(-width / 2, -height / 2);
+                    };
+                    
+                    // update image
                 };
             }
         };

@@ -7,35 +7,50 @@
         var solve = this;
 
         // default block length
-        var blockLength = 100;
+        var blockLength = 80;
 
         solve.hintDetails = {};
 
         solve.picturePieces = [];
-        
+
         // create puzzle pieces 
         solve.createPuzzlePieces = function (currentStep) {
 
-            if(!currentStep){
+            if (!currentStep) {
                 return;
             }
 
-            // append action
-            currentStep.customStepActions = currentStep.customStepActions.concat([{
+            // append actions
+
+            // reset puzzle pieces
+            currentStep.customStepActions.unshift({
                 performAction: function () {
                     if (typeof (solve.resetPieces) === "function") {
                         solve.resetPieces();
                     }
                 },
-                actionClass: "color-yellowish fa-repeat"
-            }, {
+                actionClass: "color-greenish fa-repeat"
+            });
+
+            // Shuffle pieces
+            currentStep.customStepActions.unshift({
                 performAction: function () {
                     if (typeof (solve.shufflePieces) === "function") {
                         solve.shufflePieces();
                     }
                 },
-                actionClass: "color-greenish fa-random"
-            }]);
+                actionClass: "color-yellowish fa-random"
+            });
+
+            // Show hints
+            currentStep.customStepActions.unshift({
+                performAction: function () {
+                    if (typeof (solve.highlightWrongPieces) === "function") {
+                        solve.highlightWrongPieces();
+                    }
+                },
+                actionClass: "deleteIcon fa-question"
+            });
 
         };
 
@@ -44,7 +59,7 @@
 
             // get puzzle id from state parameters 
             var puzzleId = stateParams.puzzleId,
-                styleFormat = ".puzzlePiece {background-image: url('|image|');width: |width|px; height: |height|px;}";
+                styleFormat = ".puzzlePiece {background-image: |image|;width: |width|px; height: |height|px;}";
 
             // get puzzle from service
             solve.puzzleDetails = iconService.getPuzzle(puzzleId);

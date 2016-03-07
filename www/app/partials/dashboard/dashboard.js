@@ -88,7 +88,7 @@
             // show available actions
             dashboard.currentStep.customStepActions = [{
                 performAction: removePuzzle,
-                actionClass: "deleteIcon fa-trash-o"
+                actionClass: "color-light-reddish fa-trash-o"
             }];
 
             // open solve puzzle page

@@ -30,10 +30,10 @@
             puzzleDetails.width = creatorOption.width || 350;
 
             // puzzle image
-            puzzleDetails.imageData = creatorOption.uploadedIconUrl || creatorOption.rawFileUrl;
+            puzzleDetails.imageData = "url('".concat(creatorOption.uploadedIconUrl || creatorOption.rawFileUrl, "')");
 
             // puzzle icon
-            puzzleDetails.iconData = "url(".concat(creatorOption.iconUrl || creatorOption.rawFileUrl, ")");
+            puzzleDetails.iconData = "url('".concat(creatorOption.iconUrl || creatorOption.rawFileUrl, "')");
 
             // call step complete callback
             if (currentStep.onComplete && typeof (currentStep.onComplete) === "function") {
@@ -49,6 +49,26 @@
 
             // set hint creator
             add.selectedCreator = angular.copy(creatorOption);
+
+            function rotate(degree) {
+                if (add.selectedCreator.rotate && typeof (add.selectedCreator.rotate) === "function") {
+                    add.selectedCreator.rotate(degree);
+                }
+            }
+
+            // add on complete callback
+            add.selectedCreator.onComplete = function () {
+
+                // append image rotate actions
+                currentStep.customStepActions.push({
+                    performAction: function () { rotate(90); },
+                    actionClass: "fa-rotate-right color-yellowish"
+                });
+                currentStep.customStepActions.push({
+                    performAction: function () { rotate(-90); },
+                    actionClass: "fa-rotate-left deleteIcon"
+                });
+            };
 
             // append action
             currentStep.customStepActions = [{

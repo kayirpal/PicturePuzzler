@@ -20,7 +20,7 @@
 
             var gridCells = [],
                 isGameOn,
-                blockLength = 100, //default
+                blockLength = 80, //default
                 height = puzzleDetails.height || 350,
                 width = puzzleDetails.width || 350,
                 zindex = 1,
@@ -233,11 +233,12 @@
                 }
             }
 
-            (function init() {
+            setTimeout(function () {
                 var grid = element[0],
                     xPos = 0,
                     yPos;
 
+                grid.style.backgroundImage = "none";
 
                 while (width > xPos) {
                     yPos = 0;
@@ -267,7 +268,10 @@
                     }
                     xPos += blockLength;
                 }
-            }());
+            }, 1000);
+
+
+            // anchor method to shuffle pieces
             scope.picturePuzzle.shufflePieces = function () {
                 element.removeClass("solvedPuzzle");
                 var cellCount = gridCells.length;
@@ -299,6 +303,8 @@
                 element.addClass("gameOn");
                 isGameOn = true;
             }
+
+            // anchor method to reset pieces
             scope.picturePuzzle.resetPieces = function () {
                 element.removeClass("gameOn");
                 element.removeClass("solvedPuzzle");
@@ -309,9 +315,28 @@
                     // swap y coordinate
                     cell.style.top = cell.style.backgroundPositionY.replace("-", "");
 
+                    cell.className = "puzzlePiece";
+
                 });
                 isGameOn = false;
-            }
+            };
+
+            scope.picturePuzzle.highlightWrongPieces = function () {
+
+                if (isGameOn) {
+
+                    gridCells.forEach(function (cell) {
+
+                        var posX = cell.style.backgroundPositionX.replace("-", ""),
+                            posY = cell.style.backgroundPositionY.replace("-", "");
+
+                        if (cell.style.left !== posX || cell.style.top !== posY) {
+                            cell.className += " notInItsPlace";
+                        }
+                    });
+                }
+
+            };
         };
 
         return directive;
