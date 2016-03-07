@@ -3,7 +3,6 @@
 
     // Define main module
     angular.module("puzzler", ["ui.router"
-        , 'hmTouchEvents'
         , "puzzler.share"
         , "puzzler.common"
         , "puzzler.services"

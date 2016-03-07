@@ -1,11 +1,8 @@
 ﻿<div id="siteSttingsForm" class="siteSttingsFormWrapper viewWrapper slideInRight"  ng-style="{backgroundColor: settings.backgroundStyle.color}">
     <section class="siteSttingsFormContainer" adjustable width="500" height="500">
         <div class="siteSettingsBody center">
-            <div class="iconWrapper text-center margin-b-15">
-                <article class="icon fa fa-3x fa-eye" ng-style="settings.iconStyle"></article>
-            </div>
             <ul class="no-margin no-padding">
-                <li class="bgColorSettingsWrapper" ng-repeat="colorConfig in settings.colorConfigs">
+                <li class="bgColorSettingsWrapper" ng-repeat="colorConfig in [settings.themeConfig]">
                     <h2 class="no-margin" ng-bind="colorConfig.title"></h2>
                     <div class="iconBackgroundSetter colorPickerWrapper">
 

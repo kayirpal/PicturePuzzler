@@ -46,19 +46,19 @@
             <tbody>
                 <tr>
                     <td>
-                        <article class="connectOption  animated " hm-tap="enroll.oAuthService('facebook', app)">
+                        <article class="connectOption  animated " ng-click="enroll.oAuthService('facebook', app)">
                             <img class="fa fa-5x fa-spin facebook-icon slow-animation" src="images/facebook.png" />
                             <span class="fa fa-1pt5x  fa-facebook"></span>
                         </article>
                     </td>
                     <td>
-                        <article class="connectOption centralConnectOption" hm-tap="enroll.oAuthService('google', app)">
+                        <article class="connectOption centralConnectOption" ng-click="enroll.oAuthService('google', app)">
                             <img class="fa  fa-5x  fa-counter-spin google-icon slow-animation" src="images/google.png" />
                             <span class="fa fa-1pt5x fa-google-plus"></span>
                         </article>
                     </td>
                     <td>
-                        <article class="connectOption  animated " hm-tap="enroll.oAuthService('twitter', app)">
+                        <article class="connectOption  animated " ng-click="enroll.oAuthService('twitter', app)">
                             <img class="fa  fa-5x  fa-spin twitter-icon slow-animation" src="images/twitter.png" />
                             <span class="fa fa-1pt5x fa-twitter"></span>
                         </article>
@@ -79,7 +79,7 @@
                     <span ng-if="enroll.userAuthData.rawFileUrl" class="uploadedIconWrapper margin-0 display-inline-block">
                         <canvas class="showUploadedIcon" extract-icon="enroll.userAuthData" width="75" height="75" no-changes="true"></canvas>
                     </span>
-                </label>           
+                </label>
             </div>
             <p class="displayEmailDetails text-center">
                 <span ng-bind="enroll.userAuthData.email"></span>

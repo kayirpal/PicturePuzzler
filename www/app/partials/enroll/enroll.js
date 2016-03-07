@@ -192,11 +192,6 @@
         }
 
         function gotoDashboard() {
-            //// Update classes for the form elements
-            //enroll.formClasses.pop();
-            //enroll.oAuthClasses.pop();
-            //enroll.formClasses.push("fadeOutDown");
-            //enroll.oAuthClasses.push("zoomOutDown");
 
             // goto dashboard
             state.go("dashboard");
@@ -221,7 +216,7 @@
 
             // Check for valid password 
             if (!enroll.userAuthData.uPassword) {
-                
+
                 // Add invalid class
                 enroll.passwordGroup.push("inValidPassword");
 
@@ -248,7 +243,7 @@
 
                     // hide action buttons
                     app.showHideUserActions();
-                    
+
                     // save 
                     saveCurrentUser(user);
 

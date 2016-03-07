@@ -539,6 +539,7 @@
     color: rgba(0,0,0,0.75);
     left: 450px;
     top: 15px;
+    text-shadow: #fff 0 0 20px;
 }
 
 .redComponent .nobe {
@@ -1196,4 +1197,7 @@
     -o-transition: top 0.35s linear, left 0.35s linear;
     -webkit-transition: top 0.35s linear, left 0.35s linear;
     transition: top 0.35s linear, left 0.35s linear;
+}
+.stepDescription .headerIcon:hover {
+    box-shadow: none;
 }

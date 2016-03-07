@@ -229,6 +229,7 @@
                     if (!isPuzzleUnsolved) {
                         element.removeClass("gameOn");
                         element.addClass("solvedPuzzle");
+                        isGameOn = false;
                     }
                 }
             }

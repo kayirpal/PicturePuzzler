@@ -18,7 +18,8 @@
             scope.captureImage = scope.captureImage || {};
             
             function onSuccess(imageURI) {
-                scope.captureImage.rawFileUrl = "data:image/jpeg;base64," + imageURI;
+                var uploadedFile = "data:image/jpeg;base64," + imageURI;
+                scope.captureImage.rawFileUrl = uploadedFile;
 
                 if (scope.captureImage.onComplete && typeof (scope.captureImage.onComplete) === "function") {
                     scope.captureImage.onComplete(uploadedFile);

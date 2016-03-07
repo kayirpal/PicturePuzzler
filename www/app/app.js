@@ -70,11 +70,14 @@
             state.go("dashboard");
         };
 
+        // reset site settings
         app.resetSiteSettings = function () {
-            var key = constants.siteSettingsKey;
-            app.backgroundStyle = undefined;
-            app.iconStyle = undefined;
 
+            // get storage key
+            var key = constants.siteSettingsKey;
+
+            // rest site theme
+            app.backgroundStyle = undefined;
             constants.settingsToApply = undefined;
 
             // save new settings
@@ -98,17 +101,15 @@
                     };
                     settingsToSave.backgroundStyle = app.backgroundStyle;
                 }
-
-                if (settings.iconStyle) {
-                    app.iconStyle = settings.iconStyle;
-                    settingsToSave.iconStyle = app.iconStyle;
-                }
-
+                
+                // update constants service
                 constants.settingsToApply = settingsToSave;
 
                 // save new settings
                 storageService.set(settingsToSave, key);
             }
+
+            // goto dashboard
             app.gotoDashboard();
         };
 
@@ -144,7 +145,7 @@
 
                 app.loggedInUser = sessionDetails;
 
-                app.gotoDashboard();                
+                app.gotoDashboard();
             }
 
         }());
