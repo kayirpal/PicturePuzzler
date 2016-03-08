@@ -27,6 +27,7 @@
                         <input ng-style="{'background-color':  enroll.currentThemeColor}" type="text" class="inputField  text-right" ng-model="enroll.userAuthData.uName"
                                ng-keypress="enroll.checkPressedKey(enroll.userAuthData, $event)"
                                ng-focus="enroll.userAuthData.invalidEmail = false"
+                               auto-focus
                                placeholder="email">
                     </header>
                     <div class="emailSeperator fieldComponent">
@@ -71,8 +72,8 @@
         </table>
     </section>
 
-    <div class="popupWrapper" ng-if="enroll.showPasswordScreen">
-        <article class="popupContainer passwordContainer">
+    <div class="popupWrapper" ng-if="enroll.showPasswordScreen" ng-click="enroll.showPasswordScreen=false">
+        <article class="popupContainer passwordContainer" stop-propagation>
             <div class="profilePhotoWrapper text-center pointer">
                 <label file-upload="enroll.userAuthData">
                     <span class="profilePhoto fa fa-user" ng-hide="enroll.userAuthData.rawFileUrl"></span>
@@ -85,8 +86,7 @@
                 <span ng-bind="enroll.userAuthData.email"></span>
             </p>
             <span class="passwordField">
-                <input type="password" class="inputField" placeholder="" ng-model="enroll.userAuthData.uPassword" autofocus
-                       ng-keypress="enroll.checkPressedKey(app, $event, true)"
+                <input type="password" auto-focus class="inputField" ng-class="{inValidPassword: enroll.userAuthData.invalidPassword}"  ng-model="enroll.userAuthData.uPassword" ng-keypress="enroll.checkPressedKey(app, $event, true)"
                        ng-blur="enroll.login(app)" />
             </span>
         </article>

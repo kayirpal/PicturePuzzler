@@ -6,13 +6,16 @@
       1. location object {$location} to provide redirections
       2. defer object {$q} for returning promises for api calls 
      */
-    var authService = function ($q, constants) {
+    var authService = function ($q, constants, storageService) {
 
         // Get service pointer
         var service = this;
 
         // Other local variables
         var oAuthToken = "la2yEcwv1lz_UnaWPgTdXAzA1jg";
+
+        // internal storage auth key
+        var authKey = constants.authKey;
 
         /*
          * Login method:
@@ -25,23 +28,23 @@
             if (localStorage) {
 
                 // Temp data base
-                var uPassword = localStorage.getItem(userAuthData.uName);
+                var email = userAuthData.email.toLowerCase(),
+                    uPassword = localStorage.getItem(email);
 
                 // If user is enrolled and wrong password
                 if (!!uPassword && uPassword !== userAuthData.uPassword) {
-
                     return false;
-                    // Save password
                 }
 
-                localStorage.setItem(userAuthData.uName, userAuthData.uPassword);
+                // update password
+                localStorage.setItem(email, userAuthData.uPassword);
 
                 return {
                     name: userAuthData.uName,
                     avatar: userAuthData.uploadedIconUrl || userAuthData.rawFileUrl,
                     isLoggedIn: true,
                     isOAuth: false,
-                    email: userAuthData.email
+                    email: email
                 };
             }
 
@@ -94,7 +97,6 @@
                 oAuthResponse.reject(error);
             });
 
-
             // return the promise 
             return oAuthResponse.promise;
 
@@ -104,6 +106,47 @@
         service.logout = function () {
             return;
         };
+
+        service.setUserDetails = function (userDetails) {
+
+            if (!userDetails) {
+                return;
+            }
+
+            // update user's avatar 
+            if (userDetails.avatar) {
+
+                // create key
+                var avatarKey = authKey.concat(userDetails.email ? userDetails.email.toLowerCase() : "no_email");
+
+                //set data
+                storageService.set(userDetails.avatar, avatarKey);
+            }
+
+            // save all current session details
+            storageService.set(userDetails, authKey);
+        };
+
+        // get user details
+        service.getUserDetails = function (email) {
+
+            email = email ? email.toLowerCase() : "no_email";
+
+            var userDetails = storageService.get(authKey);
+
+            if (userDetails && userDetails.email === email) {
+                return userDetails;
+            }
+        };
+
+        // get user's last saved avatar
+        service.getUserAvatar = function (email) {
+
+            var avatarKey = authKey.concat(email ? email.toLowerCase() : "no_email");
+
+            return storageService.get(avatarKey);
+        }
+
         // Return service pointer
         return service;
     };
@@ -112,5 +155,5 @@
     angular.module("puzzler.services")
 
 // Adding the service
-.service("authservice", ["$q", "constants", authService]);
+.service("authservice", ["$q", "constants", "storageservice", authService]);
 }());

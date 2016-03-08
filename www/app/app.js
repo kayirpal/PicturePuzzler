@@ -8,7 +8,7 @@
 
         // Navigation 
         app.subSites = constants.subSites;
-        
+
         // right side navigation 
         app.userActionClasses = constants.userActionClasses;
 
@@ -33,7 +33,7 @@
             if (app.loggedInUser) {
 
                 var key = constants.authKey;
-            
+
                 // save new settings
                 storageService.set({}, key);
 
@@ -47,16 +47,7 @@
         };
 
         app.shareIt = function (viewHandle) {
-            if (window.socialmessage) {
-                var message = {
-                    text: "Snap a photo. Turn it into a puzzle. Challenge your friends :)",
-                    subject: "Fun Puzzle App!",
-                    url: "http://www.laprik.com/12345"
-                };
-                window.socialmessage.send(message);
-            } else {
-                app.gotoPage(viewHandle);
-            }
+            app.gotoPage(viewHandle);
         };
 
         app.gotoDashboard = function () {
@@ -101,7 +92,7 @@
                     };
                     settingsToSave.backgroundStyle = app.backgroundStyle;
                 }
-                
+
                 // update constants service
                 constants.settingsToApply = settingsToSave;
 
