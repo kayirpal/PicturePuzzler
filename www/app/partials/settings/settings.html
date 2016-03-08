@@ -3,7 +3,9 @@
         <div class="siteSettingsBody center">
             <ul class="no-margin no-padding">
                 <li class="bgColorSettingsWrapper" ng-repeat="colorConfig in [settings.themeConfig]">
-                    <h2 class="no-margin" ng-bind="colorConfig.title"></h2>
+                    <h2 class="no-margin" >
+                        <span class="fa fa-2x fa-paint-brush"></span>
+                    </h2>
                     <div class="iconBackgroundSetter colorPickerWrapper">
 
                         <div class="colorPalletContainer float-right line-height-70">
@@ -27,7 +29,7 @@
 
     <section class="siteSettingsFooter">
         <div class="resetSettingsButton siteSettingsAction" ng-click="app.resetSiteSettings()">
-            <span class="fa fa-4x fa-repeat"></span>
+            <span class="fa fa-4x fa-eraser"></span>
         </div>
         <div class="setSettingsButton siteSettingsAction" ng-click="app.setSiteSettings(settings)">
             <span class="fa fa-4x fa-check-square-o"></span>

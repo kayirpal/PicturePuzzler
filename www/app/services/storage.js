@@ -80,6 +80,12 @@
             }
         };
 
+        // reset everything
+        service.resetAll = function () {
+            if(storage.clear && typeof(storage.clear)==="function"){
+                storage.clear();
+            }
+        };
 
         // Return service pointer
         return service;

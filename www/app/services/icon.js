@@ -66,6 +66,11 @@
             return storage.set(puzzles, key);
         };
 
+        // reset icons
+        service.resetAll = function () {
+            puzzles = [];
+        };
+
         // Return service pointer
         return service;
     };
