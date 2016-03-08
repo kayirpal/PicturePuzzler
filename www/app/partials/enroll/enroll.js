@@ -10,10 +10,6 @@
         // Form classes
         enroll.formClasses = constants.enrollFormClasses;
 
-        // validity indicator classes
-        enroll.emailGroup = [];
-        enroll.passwordGroup = ["input-group", "emptyPassword"];
-
         enroll.emailProviders = [{
             style: {
                 'background-color': "rgb(45, 130, 80)",
@@ -145,8 +141,12 @@
 
                 if (validEmailAlias) {
 
+                    // update user name
+                    userAuthData.uName = validEmailAlias;
+
                     // check domain
                     if (enroll.currentEmailProvider) {
+
                         userAuthData.email = userAuthData.uName.concat("@", enroll.currentEmailProvider);
 
                         // check email validation
@@ -156,6 +156,25 @@
 
                         // assume  present for now
                         enroll.showPasswordScreen = true;
+                    } else {
+                        if (userAuthData.domainName) {
+
+                            // set custom email
+                            userAuthData.email = userAuthData.uName.concat("@", userAuthData.domainName);
+
+                            // set valid flag on
+                            userAuthData.invalidEmail = false;
+
+                            // assume  present for now
+                            enroll.showPasswordScreen = true;
+                        }
+                    }
+
+                    if (!userAuthData.invalidEmail) {
+
+                        // get saved user details if any
+                        userAuthData.rawFileUrl = auth.getUserAvatar(userAuthData.email);
+
                     }
                 }
             }
@@ -168,7 +187,8 @@
                 var userAuthData = enroll.userAuthData;
 
                 if (isPassword) {
-                    enroll.checkPassword(app);
+
+                    enroll.login(app);
 
                 } else {
                     enroll.checkProvidedEmail(userAuthData);
@@ -176,27 +196,7 @@
             }
         };
 
-        enroll.checkPassword = function (app) {
-
-            enroll.showPasswordScreen = false;
-
-            enroll.login(app);
-        };
-
-        function saveCurrentUser(userDetails) {
-            var key = constants.authKey;
-
-            // save new settings
-            storageService.set(userDetails, key);
-
-        }
-
         function gotoDashboard() {
-            //// Update classes for the form elements
-            //enroll.formClasses.pop();
-            //enroll.oAuthClasses.pop();
-            //enroll.formClasses.push("fadeOutDown");
-            //enroll.oAuthClasses.push("zoomOutDown");
 
             // goto dashboard
             state.go("dashboard");
@@ -205,59 +205,41 @@
         // Enroll user
         enroll.login = function (app) {
 
-            var validForm = true;
+            var userAuthData = enroll.userAuthData;
 
             // Check valid email
-            if (enroll.userAuthData.invalidEmail) {
-
-                enroll.emailGroup.pop();
-                // Add invalid class
-                enroll.emailGroup.push("inValidEmail");
-
-                validForm = false;
+            if (userAuthData.invalidEmail || !userAuthData.uPassword || !userAuthData.uPassword.trim()) {
+                return;
             }
 
-            enroll.passwordGroup.pop();
+            userAuthData.invalidPassword = false;
 
-            // Check for valid password 
-            if (!enroll.userAuthData.uPassword) {
-                
-                // Add invalid class
-                enroll.passwordGroup.push("inValidPassword");
+            // Call login
+            var user = auth.login(userAuthData);
 
-                validForm = false;
+            if (user) {
 
+                // Set user avatar
+                app.loggedInUser = user;
+
+                // hide action buttons
+                app.showHideUserActions();
+
+                // save  user details
+                auth.setUserDetails(user);
+
+                // goto dashboard
+                gotoDashboard();
 
             } else {
 
-                enroll.showPasswordScreen = false;
-
                 // Add invalid class
-                enroll.passwordGroup.push("emptyPassword");
-            }
+                userAuthData.invalidPassword = true;
 
-            if (validForm) {
-
-                // Call login
-                var user = auth.login(enroll.userAuthData);
-
-                if (user) {
-
-                    // Set user avatar
-                    app.loggedInUser = user;
-
-                    // hide action buttons
-                    app.showHideUserActions();
-                    
-                    // save 
-                    saveCurrentUser(user);
-
-                    // goto dashboard
-                    gotoDashboard();
-                }
             }
         };
 
+        // third party authorization
         enroll.oAuthService = function (serviceProvider, app) {
 
             auth.oAuth(serviceProvider).then(
@@ -271,7 +253,7 @@
                         app.showHideUserActions();
 
                         // save 
-                        saveCurrentUser(user);
+                        auth.setUserDetails(user);
 
                         // goto dashboard
                         gotoDashboard();

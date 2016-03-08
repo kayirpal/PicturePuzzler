@@ -8,6 +8,7 @@
             scope: {
                 extractIcon: "="
             },
+
             link: function (scope, element, attr) {
 
                 scope.extractIcon = scope.extractIcon || {};
@@ -18,21 +19,26 @@
                 var width = canvas.width,
                     scaleRatio = 1,
                     height = canvas.height,
-                    widthDiff = window.innerWidth - width,
-                    heightDiff = window.innerHeight - height;
+                    maxWidth = window.innerWidth - (window.innerWidth % 80),
+                    maxHeight = window.innerHeight - (window.innerHeight % 80),
+                    widthDiff = maxWidth - width,
+                    heightDiff = maxHeight - height;
 
                 if (!attr.noChanges) {
 
                     if (heightDiff > widthDiff) {
-                        scaleRatio = window.innerWidth / width;
+                        scaleRatio = maxWidth / width;
                     } else {
-                        scaleRatio = window.innerHeight / height;
+                        scaleRatio = maxHeight / height;
                     }
 
-                    scaleRatio *= 0.75;
+                    scaleRatio *= 0.8;
 
                     width *= scaleRatio;
                     height *= scaleRatio;
+
+                    width = width - (width % 80);
+                    height = height - (height % 80);
 
                     canvas.width = width;
                     canvas.height = height;
@@ -45,7 +51,36 @@
                 imageObj.src = scope.extractIcon.rawFileUrl;
                 imageObj.onload = function () {
                     context.drawImage(imageObj, 0, 0, width, height);
+                    scope.extractIcon.width = width;
+                    scope.extractIcon.height = height;
                     scope.extractIcon.uploadedIconUrl = canvas.toDataURL("image/png");
+                    scope.extractIcon.iconUrl = canvas.toDataURL("image/png", 0.25);                    
+                };
+
+
+                scope.extractIcon.rotate = function (degree) {
+
+                    context.translate(width / 2, height/2);
+                    context.rotate(degree * Math.PI / 180);
+                    context.translate(-width / 2, -height/2);
+                    var newImageUrl = canvas.toDataURL("image/png");
+                    var imageObj2 = new Image();
+                    imageObj2.height = height;
+                    imageObj2.width = width;
+                    imageObj2.src = newImageUrl;
+                    imageObj2.onload = function () {
+                        context.drawImage(imageObj2, 0, 0, width, height);
+                        scope.extractIcon.width = width;
+                        scope.extractIcon.height = height;
+                        scope.extractIcon.uploadedIconUrl = canvas.toDataURL("image/png");
+                        scope.extractIcon.iconUrl = canvas.toDataURL("image/png", 1);
+
+                        context.translate(width / 2, height / 2);
+                        context.rotate(-degree * Math.PI / 180);
+                        context.translate(-width / 2, -height / 2);
+                    };
+                    
+                    // update image
                 };
             }
         };

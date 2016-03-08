@@ -379,3 +379,6 @@
 .profilePhotoWrapper .showUploadedIcon {
     border-radius: 35px;
 }
+.passwordField .inValidPassword {
+    background-color: rgba(255, 0, 0, 0.68);
+}

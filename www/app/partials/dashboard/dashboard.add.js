@@ -14,7 +14,7 @@
             add.selectedCreator = undefined;
 
             // remove added action button
-            currentStep.customStepActions =[];
+            currentStep.customStepActions = [];
         }
 
         // set puzzle creator
@@ -23,13 +23,18 @@
             // do post select 
             var creatorOption = add.selectedCreator;
 
-            var puzzleDetails = {
-                iconDetails: {}
-            };
+            var puzzleDetails = {};
 
-            // puzzle message
-            puzzleDetails.message = creatorOption.uploadedIconUrl || creatorOption.rawFileUrl;
-                       
+            // image dimensions
+            puzzleDetails.height = creatorOption.height || 350;
+            puzzleDetails.width = creatorOption.width || 350;
+
+            // puzzle image
+            puzzleDetails.imageData = "url('".concat(creatorOption.uploadedIconUrl || creatorOption.rawFileUrl, "')");
+
+            // puzzle icon
+            puzzleDetails.iconData = "url('".concat(creatorOption.iconUrl || creatorOption.rawFileUrl, "')");
+
             // call step complete callback
             if (currentStep.onComplete && typeof (currentStep.onComplete) === "function") {
                 currentStep.onComplete(puzzleDetails);
@@ -43,13 +48,33 @@
         add.selectPuzzleCreator = function (currentStep, creatorOption) {
 
             // set hint creator
-            add.selectedCreator = creatorOption;
-            
+            add.selectedCreator = angular.copy(creatorOption);
+
+            function rotate(degree) {
+                if (add.selectedCreator.rotate && typeof (add.selectedCreator.rotate) === "function") {
+                    add.selectedCreator.rotate(degree);
+                }
+            }
+
+            // add on complete callback
+            add.selectedCreator.onComplete = function () {
+
+                // append image rotate actions
+                currentStep.customStepActions.push({
+                    performAction: function () { rotate(90); },
+                    actionClass: "fa-rotate-right color-yellowish"
+                });
+                currentStep.customStepActions.push({
+                    performAction: function () { rotate(-90); },
+                    actionClass: "fa-rotate-left deleteIcon"
+                });
+            };
+
             // append action
-            currentStep.customStepActions =[{
+            currentStep.customStepActions = [{
                 performAction: resetPuzzleCreator,
                 actionClass: "fa-times discardChanges"
-            },{
+            }, {
                 performAction: selectPuzzleCreator,
                 actionClass: "fa-check saveChanges"
             }];

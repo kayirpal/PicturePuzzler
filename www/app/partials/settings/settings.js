@@ -7,45 +7,16 @@
         // current scope
         var settings = this;
 
-        settings.iconStyle = {};
-
-        function setFontColor(style) {
-            settings.fontStyle = style;
-            settings.iconStyle.color = style.color;
-        }
-
-        function setBackgroundColor(style) {
-            settings.backgroundStyle = style;
-        }
-        function setIconColor(style) {
-            settings.iconStyle.backgroundColor = style.color;
-        }
-
-        settings.colorConfigs = [{
-            title: "Background color",
-            onChange: setBackgroundColor,
+        // site theme configuration settings
+        settings.themeConfig = {
+            title: "Theme",
             selectedColorPallet: "#234",
             colorPallet: ["rgb(132, 24, 59)", "rgb(101, 34, 34)", "#234", "rgb(14, 97, 90)", "rgb(44, 115, 49)", "rgb(128, 112, 36)"],
             style: {}
-        }, {
-            title: "Font color",
-            selectedColorPallet: "#ccc",
-            onChange: setFontColor,
-            colorPallet: ["rgb(226, 64, 60)", "rgb(228, 192, 131)", "#ccc", "rgb(136, 199, 140)", "rgb(247, 130, 167)", "rgb(214, 197, 65)"],
-            style: {
-                color: "#fff",
-                left: "25px"
-            }
-        }, {
-            title: "Icon color",
-            selectedColorPallet: "rgb(9, 13, 17)",
-            onChange: setIconColor,
-            colorPallet: ["rgb(9, 13, 17)", "rgb(152, 45, 45)", "rgb(67, 117, 51)", "rgb(51, 117, 105)", "rgb(73, 65, 144)", "rgb(123, 119, 68)"],
-            style: {}
-        }];
+        };
 
-
-        function getNobeStyle(event) {
+        // set theme 
+        settings.setColor = function (event, themeConfig) {
 
             var offsetX = event.offsetX,
                 offset,
@@ -84,48 +55,35 @@
 
             nobeStyle.color = colorString;
 
-            return nobeStyle;
-        }
-
-        settings.setColor = function (event, colorConfigs) {
-
-            colorConfigs.style = getNobeStyle(event);
-
-            if (colorConfigs.onChange && typeof (colorConfigs.onChange) === "function") {
-                colorConfigs.onChange(colorConfigs.style);
-            }
+            settings.backgroundStyle = nobeStyle;
         };
 
-        settings.selectPredefinedColor = function (colorConfigs, color) {
+        // select from predefined themes 
+        settings.selectPredefinedColor = function (themeConfig, color) {
 
-            colorConfigs.selectedColorPallet = color;
+            themeConfig.selectedColorPallet = color;
 
-            colorConfigs.style = {
+            settings.backgroundStyle = {
                 color: color
             };
-            if (colorConfigs.onChange && typeof (colorConfigs.onChange) === "function") {
-                colorConfigs.onChange(colorConfigs.style);
-            }
         };
 
+        // get theme details from site settings
         (function () {
-            var settingsToApply = constants.settingsToApply;
+            var settingsToApply = constants.settingsToApply,
+                backgroundColor;
 
-            if (settingsToApply) {
+            if (settingsToApply && settingsToApply.backgroundStyle) {
 
-                if (settingsToApply.backgroundStyle) {
-                    settings.backgroundStyle = {
-                        color: settingsToApply.backgroundStyle.backgroundColor
-                    };
-                    settings.colorConfigs[0].selectedColorPallet = settingsToApply.backgroundStyle.backgroundColor;
-                }
+                backgroundColor = settingsToApply.backgroundStyle.backgroundColor;
 
-                if (settingsToApply.iconStyle) {
-                    settings.iconStyle = settingsToApply.iconStyle || {};
-                    settings.colorConfigs[1].selectedColorPallet = settings.iconStyle.color;
-                    settings.colorConfigs[2].selectedColorPallet = settings.iconStyle.backgroundColor;
-                }
+                settings.backgroundStyle = {
+                    color: backgroundColor
+                };
+
+                settings.themeConfig.selectedColorPallet = backgroundColor;
             }
+
 
         }());
 
