@@ -2,3 +2,5 @@ packages/
 .vs/config/applicationhost.config
 www/bin/
 www/obj/
+platforms/
+plugins/
