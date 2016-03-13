@@ -29,6 +29,7 @@
 
                 // Temp data base
                 var email = userAuthData.email.toLowerCase(),
+                    initials = "",
                     uPassword = localStorage.getItem(email);
 
                 // If user is enrolled and wrong password
@@ -39,9 +40,17 @@
                 // update password
                 localStorage.setItem(email, userAuthData.uPassword);
 
+                // create initials
+                if (userAuthData.uName && userAuthData.uName.trim()) {
+                    initials = initials.concat(userAuthData.uName[0].toUpperCase());
+                } else {
+                    initials = initials.concat(email[0].toUpperCase());
+                }
+
                 return {
                     name: userAuthData.uName,
                     avatar: userAuthData.uploadedIconUrl || userAuthData.rawFileUrl,
+                    initials: initials,
                     isLoggedIn: true,
                     isOAuth: false,
                     email: email
@@ -77,11 +86,22 @@
                 // Call api method to get user details
                 result.me().done(function (response) {
 
+                    var initials = "";
+
                     if (!!response.id) {
 
                         // Add dummy user data
                         response.isOAuth = true;
                         response.isLoggedIn = true;
+                        
+                        // create initials
+                        if (response.name && response.name.trim()) {
+                            initials = initials.concat(response.name[0].toUpperCase());
+                        } else {
+                            initials = initials.concat(response.email[0].toUpperCase());
+                        }
+
+                        response.initials = initials;
 
                         oAuthResponse.resolve(response);
                     } else {

@@ -28,7 +28,7 @@
     <header id="appHeader" class="">
         <aside class="userInfoWrapper ng-hide" ng-show="true">
             <div class="userNameDisplay" ng-click="app.showHideUserActions()">
-                <span class="fa fa-user" ng-if="!app.loggedInUser.avatar"></span>
+                <span class="fa" ng-if="!app.loggedInUser.avatar" ng-class="app.loggedInUser?'userInitials':'fa-user'" ng-bind="app.loggedInUser.initials"></span>
                 <span class="userAvatar" ng-if="app.loggedInUser.avatar" style="background-image : url('{{app.loggedInUser.avatar}}')"></span>
             </div>
             <div ng-class="app.userActionClasses">

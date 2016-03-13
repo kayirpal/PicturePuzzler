@@ -181,7 +181,7 @@ body {
 }
 
 .fa-1pt5x {
-    font-size: 1.5em;
+    font-size: 2em;
 }
 
 .connectOption {
@@ -196,9 +196,9 @@ body {
 
     .connectOption span:last-child {
         position: absolute;
-        left: 2em;
+        left: 1.35em;
         color: #eee;
-        top: 1.85em;
+        top: 1.35em;
     }
 
 
@@ -572,4 +572,8 @@ ul, ol {
     position: absolute;
     background-position: center;
     border-radius: 25px;
+}
+.userInitials {
+    font-size: 1.75em;
+    text-shadow: black 0 0 10px;
 }

@@ -17,6 +17,12 @@
 
             // get puzzle details
             var puzzleDetails = scope.picturePuzzle.puzzleDetails || {};
+            var scoreDetails = scope.picturePuzzle.scoreDetails||{
+                tires: 0,
+                passed: 0,
+                best: 0,
+                current: 0
+            };
 
             var gridCells = [],
                 isGameOn,
@@ -83,11 +89,25 @@
                     });
                 }
 
+                scoreDetails.current += 1;
+           
                 if (!isPuzzleUnsolved) {
                     element.removeClass("gameOn");
                     element.addClass("solvedPuzzle");
                     isGameOn = false;
+
+                    scope.picturePuzzle.togglePuzzleActions(["reset", "help"]);
+
+                    // check best 
+                    if (scoreDetails.best > scoreDetails.current) {
+                        scoreDetails.best = scoreDetails.current;
+                    }
+
+                    delete scope.picturePuzzle.isGameOn;
                 }
+
+                scope.$apply();
+
             }
             function enterDropArea(ev) {
                 ev.preventDefault();
@@ -226,126 +246,138 @@
                         return cell.style.left !== posX || cell.style.top !== posY;
                     });
 
+                    scoreDetails.current += 1;
+
                     if (!isPuzzleUnsolved) {
                         element.removeClass("gameOn");
                         element.addClass("solvedPuzzle");
                         isGameOn = false;
-                    }
-                }
-            }
 
-            setTimeout(function () {
-                var grid = element[0],
-                    xPos = 0,
-                    yPos;
+                        scope.picturePuzzle.togglePuzzleActions(["reset", "help"]);
 
-                grid.style.backgroundImage = "none";
-
-                while (width > xPos) {
-                    yPos = 0;
-                    while (height > yPos) {
-                        var cell = document.createElement("article");
-
-                        // add drag events            
-                        cell.draggable = true;
-                        cell.ondragstart = drag;
-                        cell.ondrop = drop;
-                        cell.ondragover = allowDrop;
-                        cell.ondragenter = enterDropArea;
-                        cell.ondragleave = leaveDropArea;
-                        cell.addEventListener('touchstart', touchstart, false);
-                        cell.addEventListener('touchmove', touchmove, false);
-                        cell.addEventListener('touchend', touchend, false);
-
-                        cell.id = gridCells.length;
-                        cell.className = "puzzlePiece";
-                        cell.style.top = yPos + "px";
-                        cell.style.backgroundPositionY = ((-1) * yPos) + "px";
-                        cell.style.left = xPos + "px";
-                        cell.style.backgroundPositionX = ((-1) * xPos) + "px";
-                        gridCells.push(cell);
-                        grid.appendChild(cell);
-                        yPos += blockLength;
-                    }
-                    xPos += blockLength;
-                }
-            }, 1000);
-
-
-            // anchor method to shuffle pieces
-            scope.picturePuzzle.shufflePieces = function () {
-                element.removeClass("solvedPuzzle");
-                var cellCount = gridCells.length;
-                gridCells.forEach(function (cell, index) {
-                    var randonIndex = index,
-                        targetCell,
-                        temp,
-                        tries = 5;
-                    while (index === randonIndex && tries) {
-                        randonIndex = parseInt(Math.random() * cellCount, 10);
-                        tries -= 1;
-                    }
-
-                    targetCell = gridCells[randonIndex];
-
-                    // swap positions
-
-                    // swap x coordinate
-                    temp = cell.style.left;
-                    cell.style.left = targetCell.style.left;
-                    targetCell.style.left = temp;
-
-                    // swap y coordinate
-                    temp = cell.style.top;
-                    cell.style.top = targetCell.style.top;
-                    targetCell.style.top = temp;
-
-                });
-                element.addClass("gameOn");
-                isGameOn = true;
-            }
-
-            // anchor method to reset pieces
-            scope.picturePuzzle.resetPieces = function () {
-                element.removeClass("gameOn");
-                element.removeClass("solvedPuzzle");
-                gridCells.forEach(function (cell) {
-
-                    cell.style.left = cell.style.backgroundPositionX.replace("-", "");
-
-                    // swap y coordinate
-                    cell.style.top = cell.style.backgroundPositionY.replace("-", "");
-
-                    cell.className = "puzzlePiece";
-
-                });
-                isGameOn = false;
-            };
-
-            scope.picturePuzzle.highlightWrongPieces = function () {
-
-                if (isGameOn) {
-
-                    gridCells.forEach(function (cell) {
-
-                        var posX = cell.style.backgroundPositionX.replace("-", ""),
-                            posY = cell.style.backgroundPositionY.replace("-", "");
-
-                        if (cell.style.left !== posX || cell.style.top !== posY) {
-                            cell.className += " notInItsPlace";
+                        // check best 
+                        if (scoreDetails.best>scoreDetails.current) {
+                            scoreDetails.best = scoreDetails.current;
                         }
-                    });
+
+                    delete scope.picturePuzzle.isGameOn;
+                }
+                scope.$apply();
+            }
+        }
+
+        setTimeout(function () {
+            var grid = element[0],
+                xPos = 0,
+                yPos;
+
+            grid.style.backgroundImage = "none";
+
+            while (width > xPos) {
+                yPos = 0;
+                while (height > yPos) {
+                    var cell = document.createElement("article");
+
+                    // add drag events            
+                    cell.draggable = true;
+                    cell.ondragstart = drag;
+                    cell.ondrop = drop;
+                    cell.ondragover = allowDrop;
+                    cell.ondragenter = enterDropArea;
+                    cell.ondragleave = leaveDropArea;
+                    cell.addEventListener('touchstart', touchstart, false);
+                    cell.addEventListener('touchmove', touchmove, false);
+                    cell.addEventListener('touchend', touchend, false);
+
+                    cell.id = gridCells.length;
+                    cell.className = "puzzlePiece";
+                    cell.style.top = yPos + "px";
+                    cell.style.backgroundPositionY = ((-1) * yPos) + "px";
+                    cell.style.left = xPos + "px";
+                    cell.style.backgroundPositionX = ((-1) * xPos) + "px";
+                    gridCells.push(cell);
+                    grid.appendChild(cell);
+                    yPos += blockLength;
+                }
+                xPos += blockLength;
+            }
+        }, 1000);
+
+
+        // anchor method to shuffle pieces
+        scope.picturePuzzle.shufflePieces = function () {
+            element.removeClass("solvedPuzzle");
+            var cellCount = gridCells.length;
+            gridCells.forEach(function (cell, index) {
+                var randonIndex = index,
+                    targetCell,
+                    temp,
+                    tries = 5;
+                while (index === randonIndex && tries) {
+                    randonIndex = parseInt(Math.random() * cellCount, 10);
+                    tries -= 1;
                 }
 
-            };
+                targetCell = gridCells[randonIndex];
+
+                // swap positions
+
+                // swap x coordinate
+                temp = cell.style.left;
+                cell.style.left = targetCell.style.left;
+                targetCell.style.left = temp;
+
+                // swap y coordinate
+                temp = cell.style.top;
+                cell.style.top = targetCell.style.top;
+                targetCell.style.top = temp;
+
+            });
+            element.addClass("gameOn");
+            isGameOn = true;
+        }
+
+        // anchor method to reset pieces
+        scope.picturePuzzle.resetPieces = function () {
+            element.removeClass("gameOn");
+            element.removeClass("solvedPuzzle");
+            gridCells.forEach(function (cell) {
+
+                cell.style.left = cell.style.backgroundPositionX.replace("-", "");
+
+                // swap y coordinate
+                cell.style.top = cell.style.backgroundPositionY.replace("-", "");
+
+                cell.className = "puzzlePiece";
+
+            });
+            isGameOn = false;
         };
 
-        return directive;
+        scope.picturePuzzle.highlightWrongPieces = function () {
+
+            if (isGameOn) {
+
+                gridCells.forEach(function (cell) {
+
+                    var posX = cell.style.backgroundPositionX.replace("-", ""),
+                        posY = cell.style.backgroundPositionY.replace("-", "");
+
+                    if (cell.style.left !== posX || cell.style.top !== posY) {
+                        cell.className += " notInItsPlace";
+                    }
+                });
+            }
+
+        };
     };
 
-    // Define directive module
-    angular.module("puzzler.directives")
+    return directive;
+};
 
-    // Add the directive to the module
-    .directive("picturePuzzle", picturePuzzle);
+// Define directive module
+angular.module("puzzler.directives")
+
+// Add the directive to the module
+.directive("picturePuzzle", picturePuzzle);
 }());

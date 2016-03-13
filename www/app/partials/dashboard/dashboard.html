@@ -16,7 +16,7 @@
         <section class="passwordPanelWrapper" ng-class="dashboard.currentStep.stepClass">
 
             <header class="stepDescription">
-                <i class="headerIcon animated hvr-glow fa fa-4x" ng-class="dashboard.currentStep.headerClass"></i>
+                <i class="headerIcon animated hvr-glow fa fa-3x" ng-class="dashboard.currentStep.headerClass"></i>
                 <h2 class="primaryHeader display-inline-block" ng-bind="dashboard.currentStep.primaryHeader"></h2>
             </header>
 
@@ -29,7 +29,7 @@
                     <div class="homeButton fRight" ng-click="dashboard.hideUserActions()">
                         <span class="fa pointer fa-home"></span>
                     </div>
-                    <div class="customStepActions fRight" ng-repeat="action in dashboard.currentStep.customStepActions">
+                    <div class="customStepActions fRight" ng-repeat="action in dashboard.currentStep.customStepActions" ng-hide="action.dontShow">
                         <span ng-class="'fa pointer '+action.actionClass" ng-click="action.performAction(dashboard.currentStep)"></span>
                     </div>
                 </div>

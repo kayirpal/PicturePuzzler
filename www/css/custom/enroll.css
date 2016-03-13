@@ -331,7 +331,11 @@
     }
 
 .invalidEmail .inputField {
-    background-color: rgba(255, 0, 0, 0.56);
+    background-color: rgba(255, 0, 0, 0.56) !important;
+    -moz-animation-name: jello;
+    -o-animation-name: jello;
+    -webkit-animation-name: jello;
+    animation-name: jello;
 }
 
 

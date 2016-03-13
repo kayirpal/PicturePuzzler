@@ -9,6 +9,13 @@
         // default block length
         var blockLength = 80;
 
+        solve.scoreDetails = {
+            tires: 12,
+            passed: 3,
+            best: 34,
+            current: 56
+        };
+
         solve.hintDetails = {};
 
         solve.picturePieces = [];
@@ -22,20 +29,53 @@
 
             // append actions
 
+            // show/hide actions
+            solve.togglePuzzleActions = function(hideActions) {
+
+                hideActions = hideActions || [];
+
+                currentStep.customStepActions.forEach(function (step) {
+
+                    if (step.action && hideActions.indexOf(step.action) >= 0) {
+                        step.dontShow = true;
+                    } else {
+                        delete step.dontShow;
+                    }
+                });
+            }
+
             // reset puzzle pieces
             currentStep.customStepActions.unshift({
+                action: "reset",
                 performAction: function () {
+                    var hideActions = ["reset", "help"];
                     if (typeof (solve.resetPieces) === "function") {
+
+                        delete solve.isGameOn;
+
+                        solve.togglePuzzleActions(hideActions);
                         solve.resetPieces();
                     }
                 },
+                dontShow: true,
                 actionClass: "color-greenish fa-repeat"
             });
 
             // Shuffle pieces
             currentStep.customStepActions.unshift({
+                action: "set",
                 performAction: function () {
+                    var hideActions = ["set"];
                     if (typeof (solve.shufflePieces) === "function") {
+
+                        solve.isGameOn = true;
+
+                        solve.scoreDetails.tires += 1;
+
+                        solve.scoreDetails.current = 0;
+
+                        solve.togglePuzzleActions(hideActions);
+
                         solve.shufflePieces();
                     }
                 },
@@ -44,11 +84,16 @@
 
             // Show hints
             currentStep.customStepActions.unshift({
-                performAction: function () {
+                action: "help",
+                performAction: function (currentStep) {
                     if (typeof (solve.highlightWrongPieces) === "function") {
+
+                        solve.scoreDetails.current += 5;
+
                         solve.highlightWrongPieces();
                     }
                 },
+                dontShow: true,
                 actionClass: "deleteIcon fa-question"
             });
 

@@ -1,5 +1,17 @@
 <section class="puzzleSolverWrapper  currentStepContainer">
-    <header ng-init="solve.createPuzzlePieces(dashboard.currentStep)"></header>
+    <header ng-init="solve.createPuzzlePieces(dashboard.currentStep)" class="puzzleSolverHeader animated bounceInDown">
+        <ul class="scorecardWrapper" ng-repeat="score in [solve.scoreDetails]">
+            <li class="scorecardContainer" ng-if="!solve.isGameOn">
+                Best: <span class="color-greenish" ng-bind="score.best"></span>,
+            </li>
+            <li class="scorecardContainer">
+                Tries: <span class="color-light-reddish" ng-bind="score.tires"></span>
+            </li>
+            <li class="scorecardContainer" ng-if="solve.isGameOn">
+                , Current: <span class="color-yellowish" ng-bind="score.current"></span>
+            </li>
+        </ul>
+    </header>
     <div class="puzzleSolverContainer center" picture-puzzle="solve" ng-style="{width: solve.puzzleDetails.width+'px', height: solve.puzzleDetails.height+'px', backgroundImage: solve.puzzleDetails.imageData}">
         <article class="puzzleNotification">
             <span class="puzzleSolvedMessage">Congrats!</span>
